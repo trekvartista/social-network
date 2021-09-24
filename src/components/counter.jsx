@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 
-class Counter extends React.Component {
+class Counter extends Component {
+
+    componentWillUnmount() {
+        console.log('Counter – Unmount');
+    }
+
     render() {
+        console.log('Counter – Rendered');
+
         return (
             <div>
                 <button

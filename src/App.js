@@ -13,6 +13,16 @@ class App extends Component {
         ],
     };
 
+    constructor() {
+        super();
+        console.log('App – Constructor');
+    }
+
+    componentDidMount = counter => {
+        // Ajax call
+        console.log('App – Mounted');
+    }
+
     handleDelete = (counterId) => {
         // console.log("Event Handler Called", counterId);
         const counters = this.state.counters.filter((c) => c.id !== counterId);
@@ -44,6 +54,8 @@ class App extends Component {
     };
 
     render() {
+        console.log('App – Rendered');
+
         return (
             // used to wrap multiple 'root' elements from the render method
             <React.Fragment>
