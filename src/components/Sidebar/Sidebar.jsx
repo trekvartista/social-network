@@ -11,11 +11,11 @@ const Sidebar = (props) => {
         <div>
             <ul id="mySidebar" className={s.sidebar}>
                 <a href="javascript:void(0)" className={s.closebtn} onClick={closeNav}>&times;</a>
-                <li> <a className={s.active} href="#someForest"> Home </a> </li>
+                <li> <a className={s.active} href="/home"> Home </a> </li>
                 <li> <a href="#fields"> Tools </a> </li>
                 <li> <a href="#SpaceVoid"> About </a> </li>
-                <li> <a href="#School"> Contact </a> </li>
-                <li> <a href="#Middle_of_nowhere"> Portfolio </a> </li>
+                <li> <a href="#middleOfNowhere"> Contact </a> </li>
+                <li> <a href="/portfolio"> Portfolio </a> </li>
             </ul>
         </div>
     );
