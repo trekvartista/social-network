@@ -1,20 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
+import s from './Header.module.css'
 
-class Header extends Component {
-    render() {
-        console.log("Header – Rendered");
+function Header() {
 
-        return (
-            <div>
-                <header width='250px'>
-                    <img alt="" width='100px'
-                        src='https://static.thenounproject.com/png/201053-200.png'
-                    >
-                    </img>
-                </header>
-            </div>
-        );
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
     }
+
+    return (
+        <div>
+            <h1> a Very useful website... </h1>
+            <p> Click on the element below to open the side navigation menu. </p>
+            <span className={s.open} onClick={openNav}>
+                &#9776; Open
+            </span>
+        </div>
+    );
 }
 
 export default Header;
