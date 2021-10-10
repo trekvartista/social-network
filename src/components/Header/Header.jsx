@@ -10,7 +10,6 @@ function Header() {
     return (
         <div>
             <h1> a Very useful website... </h1>
-            <p> Click on the element below to open the side navigation menu. </p>
             <span className={s.open} onClick={openNav}>
                 &#9776; Open
             </span>
