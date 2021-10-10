@@ -13,10 +13,11 @@ function App() {
         <div>
             <Header />
             <Sidebar />
-            <Route path='/home' component={HomePage} />
-            <Route path='/portfolio' component={Portfolio} />
-            <Route path='/contact' component={Contact} />
-
+            <div>
+                <Route path='/home' render={() => <HomePage />} />
+                <Route path='/contact' render={() => <Contact />} />
+                <Route path='/portfolio' render={() => <Portfolio />} />
+            </div>
         </div>
         </BrowserRouter>
     );
