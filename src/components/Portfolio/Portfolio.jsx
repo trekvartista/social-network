@@ -11,28 +11,28 @@ const Portfolio = () => {
             <div id={s.left}></div>
             <div id={s.right}></div>
             <div id={s.center}>
-                <img
+                {/* <img
                     id={s.img}
                     src={sticker}
                     width="450px"
                     height="500px"
                     alt=""
-                />
+                /> */}
                 <div id={s.info}>
                     <p>Hello</p>
                     <h1>I'm Iskender</h1>
-                    <p id={s.jun}>Junior Frontend Developer</p>
+                    <p id={s.jun}>Junior <u>Frontend Developer</u> </p>
                     <p id={s.find}> Find me on: </p>
                     <div>
                         <a
                             href="https://github.com/trekvartista"
                             target="_blank"
                         >
-                            <img src={git} width="40px" height="40px" alt="" />
+                            <img src={git} width="30px" height="30px" alt="" />
                         </a>
 
-                        <img src={linkedin} width="40px" height="40px" alt="" />
-                        <img src={vk} width="40px" height="40px" alt="" />
+                        <img src={linkedin} width="30px" height="30px" alt="" />
+                        <img src={vk} width="30px" height="30px" alt="" />
                     </div>
                 </div>
                 <div className={s.dots}> </div>

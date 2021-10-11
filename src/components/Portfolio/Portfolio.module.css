@@ -91,13 +91,14 @@
     margin-top: 0px;
 }
 
+
 #info #find {
     font-size: 20px;
 }
 
 #info div {
     display: grid;
-    grid-template-columns: 40px 40px 40px;
+    grid-template-columns: 30px 30px 30px;
     grid-column-gap: 15px;
 }
 
