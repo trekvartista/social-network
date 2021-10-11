@@ -1,0 +1,112 @@
+#main {
+    position: relative;
+    width: 1300px;
+    height: 600px;
+    left: 120px;
+
+    background-color: rgb(0, 0, 0);
+}
+
+#left {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+
+    background-color: yellow;
+}
+
+#right {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+
+    right: 0;
+    bottom: 0;
+    background-color: yellow;
+}
+
+#center {
+    position: absolute;
+    display: grid;
+    width: 1200px;
+    height: 420px;
+
+    left: 50px;
+    top: 100px;
+
+    background-color: rgb(0, 0, 0);
+    border-radius: 15px;
+    border: 3px solid yellow;
+}
+
+.dots {
+    position: absolute;
+    bottom: -60px;
+    left: -30px;
+    width: 180px;
+    height: 180px;
+    background-image: radial-gradient(rgb(255, 255, 255) 1px, transparent 0);
+    background-size: 25px 25px;
+}
+
+.dots2 {
+    position: absolute;
+    top: -80px;
+    right: -20px;
+    width: 140px;
+    height: 140px;
+    background-image: radial-gradient(rgb(255, 255, 255) 1px, transparent 0);
+    background-size: 25px 25px;
+}
+
+#info {
+    position: absolute;
+    width: 600px;
+    height: 414px;
+    top: 50;
+
+    left: 594px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 15px;
+}
+
+#info p {
+    color: white;
+    margin-top: 50px;
+    font-size: 30px;
+    margin-left: 10px;
+    text-indent: 0;
+}
+#info h1 {
+    color: white;
+    margin-top: -20px;
+    font-size: 50px;
+    margin-left: 10px;
+}
+
+#info #jun {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    background-color: yellow;
+    margin-top: 0px;
+}
+
+#info #find {
+    font-size: 20px;
+}
+
+#info div {
+    display: grid;
+    grid-template-columns: 40px 40px 40px;
+    grid-column-gap: 15px;
+}
+
+#info div img:hover {
+    cursor: pointer;
+}
+
+#img {
+    position: absolute;
+    top: -70px;
+    left: -20px;
+}

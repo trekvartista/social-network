@@ -10,7 +10,7 @@ function App() {
 
     return (
         <BrowserRouter>
-        <div>
+        <div id="wrapper">
             <Header />
             <Sidebar />
             <div>

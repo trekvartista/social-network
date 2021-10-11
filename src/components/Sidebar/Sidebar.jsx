@@ -19,7 +19,7 @@ const Sidebar = (p) => {
                     </NavLink>
                 </li>
                 <li>
-                    <a href="#toolsSubmenu" data-toggle="collapse" aria-expanded="true" className="dropdown-toggle"> Tools </a>
+                    <a href="#toolsSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"> Tools </a>
                     <ul className="collapse list-unstyled" id="toolsSubmenu">
                         <li>
                             <NavLink to="/calculator" activeClassName={s.active}> Calculator </NavLink>

@@ -1,20 +1,45 @@
 import React from "react";
+import s from "./Portfolio.module.css";
+import sticker from "../../images/Sticker_1.png";
+import git from "../../images/github-logo.png";
+import linkedin from "../../images/linkedin-logo.png";
+import vk from "../../images/vk-logo.png";
 
 const Portfolio = () => {
     return (
-        <div>
-            <h2> Archibald was here </h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+        <div id={s.main}>
+            <div id={s.left}></div>
+            <div id={s.right}></div>
+            <div id={s.center}>
+                <img
+                    id={s.img}
+                    src={sticker}
+                    width="450px"
+                    height="500px"
+                    alt=""
+                />
+                <div id={s.info}>
+                    <p>Hello</p>
+                    <h1>I'm Iskender</h1>
+                    <p id={s.jun}>Junior Frontend Developer</p>
+                    <p id={s.find}> Find me on: </p>
+                    <div>
+                        <a
+                            href="https://github.com/trekvartista"
+                            target="_blank"
+                        >
+                            <img src={git} width="40px" height="40px" alt="" />
+                        </a>
+
+                        <img src={linkedin} width="40px" height="40px" alt="" />
+                        <img src={vk} width="40px" height="40px" alt="" />
+                    </div>
+                </div>
+                <div className={s.dots}> </div>
+                <div className={s.dots2}> </div>
+            </div>
         </div>
     );
-}
+};
 
 export default Portfolio;
