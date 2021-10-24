@@ -14,7 +14,7 @@ const Sidebar = (p) => {
             <ul id="mySidebar" className={s.sidebar}>
                 <a href="javascript:void(0)" className={s.closebtn} onClick={closeNav}>&times;</a>
                 <li>
-                    <NavLink activeClassName={s.active} to="/home">
+                    <NavLink activeClassName={s.active} to='/'>
                         Home
                     </NavLink>
                 </li>
@@ -22,15 +22,22 @@ const Sidebar = (p) => {
                     <a href="#toolsSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"> Tools </a>
                     <ul className="collapse list-unstyled" id="toolsSubmenu">
                         <li>
+                            <NavLink to='/profile' activeClassName={s.active}>
+                                Profile
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/dialogs' activeClassName={s.active}>
+                                Messages
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink to="/calculator" activeClassName={s.active}> Calculator </NavLink>
                         </li>
                         <li>
                             <NavLink to="#"> something else. </NavLink>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <NavLink to="#SpaceVoid"> About </NavLink>
                 </li>
                 <li>
                     <NavLink activeClassName={s.active} to="/contact">

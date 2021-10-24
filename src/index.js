@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
+import state from './redux/state'
+
 
 ReactDOM.render(
-    <App />,
+    <App state={state} />,
     document.getElementById('root')
 );

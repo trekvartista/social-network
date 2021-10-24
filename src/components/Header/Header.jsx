@@ -9,7 +9,7 @@ function Header() {
 
     return (
         <div className={s.main}>
-            <h1> a Very useful website... </h1>
+            <h2> a Very useful website... </h2>
             <span className={s.open} onClick={openNav}>
                 &#9776; Open
             </span>
