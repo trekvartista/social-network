@@ -11,13 +11,13 @@ const Portfolio = () => {
             <div id={s.left}></div>
             <div id={s.right}></div>
             <div id={s.center}>
-                {/* <img
+                <img
                     id={s.img}
-                    src={sticker}
-                    width="450px"
-                    height="500px"
+                    src="https://s18798.pcdn.co/dispatch/wp-content/uploads/sites/8960/2020/07/productivity-tools.jpg"
+                    width="600px"
+                    height="400px"
                     alt=""
-                /> */}
+                />
                 <div id={s.info}>
                     <p>Hello</p>
                     <h1>I'm Iskender</h1>

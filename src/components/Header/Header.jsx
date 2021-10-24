@@ -8,7 +8,7 @@ function Header() {
     }
 
     return (
-        <div>
+        <div className={s.main}>
             <h1> a Very useful website... </h1>
             <span className={s.open} onClick={openNav}>
                 &#9776; Open
