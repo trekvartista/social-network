@@ -18,9 +18,17 @@ function Profile() {
                 <img
                     id={s.ava}
                     src={ava}
-                    width="150px"
+                    width="200px"
                     alt=""
                 />
+            </div>
+
+            <div className={s.info}>
+                <p><b><u>Alex Treasure</u></b></p>
+                <br/>
+                <p>City: Bishkek</p>
+                <p>Date of birth: 1 April</p>
+                <p>Education: auca</p>
             </div>
         </div>
     );
