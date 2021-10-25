@@ -9,20 +9,23 @@ import Footer from './components/Footer/Footer';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 function App(props) {
+
     return (
         <BrowserRouter>
-        <div id="wrapper">
-            <Header />
-            <Sidebar />
-            <div>
-                <Route exact path='/' render={() => <HomePage />} />
-                <Route path='/profile' render={() => <Profile/>} />
+            <div id="wrapper">
+                <Header />
+                <Sidebar />
+                <div>
+                    <Route exact path='/' render={() => <HomePage />} />
+                    <Route path='/profile'
+                            render={() => <Profile
+                                    state={props.state}/>} />
 
-                <Route path='/contact' render={() => <Contact />} />
-                <Route exact path='/portfolio' render={() => <Portfolio />} />
+                    <Route path='/contact' render={() => <Contact />} />
+                    <Route exact path='/portfolio' render={() => <Portfolio />} />
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
         </BrowserRouter>
     );
 }

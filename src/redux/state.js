@@ -1,7 +1,19 @@
+import ava from "../images/avatarka.png";
+
 let state = {
     profilePage: {
-        posts: [],
-        dialogs: []
+        profileInfo: [
+            {
+                name: "Alex Treasure",
+                city: "Bishkek",
+                dateOfBirth: "1 April",
+                education:  "auca"
+            }
+        ],
+        posts: [
+            {id: 1, text: "Hi there, retards!", likesCount: 0},
+            {id: 2, text: "Boom, second post!", likesCount: 0},
+        ],
     },
     messagesPage: {
         messages: [
@@ -10,3 +22,5 @@ let state = {
         ]
     }
 }
+
+export default state;

@@ -1,8 +1,19 @@
-import React from 'react';
-import ava from '../../images/avatarka.png'
-import s from './Profile.module.css'
+import React from "react";
+import ava from "../../images/avatarka.png";
+import ProfileInfo from "./ProfileInfo";
+import MyPosts from "./MyPosts/MyPosts";
+import s from "./Profile.module.css";
 
-function Profile() {
+function Profile(props) {
+
+    let profileElements = props.state.profilePage.profileInfo.map((p) => (
+        <ProfileInfo
+            name={p.name}
+            city={p.city}
+            dateOfBirth={p.dateOfBirth}
+            education={p.education}
+        />
+    ));
     return (
         <div className={s.main}>
             <div className={s.header}>
@@ -15,20 +26,15 @@ function Profile() {
                 />
             </div>
             <div className={s.ava}>
-                <img
-                    id={s.ava}
-                    src={ava}
-                    width="200px"
-                    alt=""
-                />
+                <img id={s.ava} src={ava} width="200px" alt="" />
             </div>
 
             <div className={s.info}>
-                <p><b><u>Alex Treasure</u></b></p>
-                <br/>
-                <p>City: Bishkek</p>
-                <p>Date of birth: 1 April</p>
-                <p>Education: auca</p>
+                {profileElements}
+            </div>
+
+            <div className={s.posts}>
+                <MyPosts state={props.state}/>
             </div>
         </div>
     );
