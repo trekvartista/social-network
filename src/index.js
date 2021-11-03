@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import state from './redux/state'
+import {addPost} from './redux/state'   // export without default
 
+import { rerenderEntireTree } from './render';
 
-ReactDOM.render(
-    <App state={state} />,
-    document.getElementById('root')
-);
+rerenderEntireTree(state, addPost);

@@ -12,7 +12,8 @@ function MyPosts(props)  {
 
     let addPost = () => {
         let text = newPost.current.value;
-        alert(text);
+        // alert(text);
+        props.addPost(text);
         newPost.current.value = "";
     }
     /* alert('You do want it.'); */

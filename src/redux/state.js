@@ -1,4 +1,5 @@
 import ava from "../images/avatarka.png";
+import {rerenderEntireTree} from '../render'
 
 let state = {
     profilePage: {
@@ -21,6 +22,17 @@ let state = {
             {id: 2, message: "It's my second message."}
         ]
     }
+}
+
+export let addPost  = (postMessage) => {
+    let newPost = {
+        id: 3,
+        text: postMessage,
+        likesCount: 0
+    };
+
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state, addPost);
 }
 
 export default state;

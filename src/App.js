@@ -19,7 +19,8 @@ function App(props) {
                     <Route exact path='/' render={() => <HomePage />} />
                     <Route path='/profile'
                             render={() => <Profile
-                                    state={props.state}/>} />
+                                    state={props.state}
+                                    addPost={props.addPost}/>} />
 
                     <Route path='/contact' render={() => <Contact />} />
                     <Route exact path='/portfolio' render={() => <Portfolio />} />
