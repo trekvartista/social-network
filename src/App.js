@@ -19,7 +19,7 @@ function App(props) {
                     <Route exact path='/' render={() => <HomePage />} />
                     <Route path='/profile'
                             render={() => <Profile
-                                    state={props.state}
+                                    state={props.state.profilePage}
                                     addPost={props.addPost}/>} />
 
                     <Route path='/contact' render={() => <Contact />} />
