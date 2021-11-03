@@ -6,7 +6,7 @@ import s from "./Profile.module.css";
 
 function Profile(props) {
 
-    let profileElements = props.state.profilePage.profileInfo.map((p) => (
+    let profileElements = props.state.profileInfo.map((p) => (
         <ProfileInfo
             name={p.name}
             city={p.city}
@@ -34,8 +34,9 @@ function Profile(props) {
             </div>
 
             <div className={s.posts}>
-                <MyPosts state={props.state}
-                            addPost={props.addPost}/>
+                <MyPosts state={props.state.posts}
+                            addPost={props.addPost}
+                                className={s.child}/>
             </div>
         </div>
     );

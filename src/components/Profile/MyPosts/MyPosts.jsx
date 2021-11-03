@@ -4,7 +4,7 @@ import s from './MyPosts.module.css'
 
 function MyPosts(props)  {
 
-    let postElements = props.state.profilePage.posts.map((p) => (
+    let postElements = props.state.map((p) => (
         <Post message={p.text} likes={p.likesCount} />
     ));
 
@@ -27,7 +27,7 @@ function MyPosts(props)  {
             <div>
                 <button onClick={addPost}>Add post</button>
             </div>
-            <div>
+            <div className={s.post}>
                 {postElements}
             </div>
         </div>

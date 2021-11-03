@@ -1,8 +1,8 @@
 import React from 'react';
 import ava from "../../../images/avatarka.png";
+
 function Post(props) {
     return(
-
         <div>
             <img    
                 src={ava}
