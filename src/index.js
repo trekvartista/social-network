@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import state from './redux/state'
-import {addPost, updateNewText, subscribe} from './redux/state'   // export without default
+import store from './redux/state'
 
 let rerenderEntireTree = () => {
-    ReactDOM.render(
-        <App state={state} addPost={addPost} update={updateNewText}/>,
+    ReactDOM.render(                                // 'bind' привязывает контекст к функции
+        <App state={store.getState()} addPost={store.addPost.bind(store)} update={store.updateNewText.bind(store)}/>,
         document.getElementById('root')
     );
 }
 
 rerenderEntireTree()
 
-subscribe(rerenderEntireTree)
+store.subscribe(rerenderEntireTree)
