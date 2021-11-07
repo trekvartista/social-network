@@ -1,5 +1,8 @@
 import ava from "../images/avatarka.png";
-import {rerenderEntireTree} from '../render'
+
+let rerenderEntireTree = () => {
+    console.log('State was changed')
+}
 
 let state = {
     profilePage: {
@@ -25,7 +28,7 @@ let state = {
     }
 }
 
-export let addPost  = () => {
+export const addPost  = () => {
     let newPost = {
         id: 3,
         text: state.profilePage.newText,
@@ -34,12 +37,16 @@ export let addPost  = () => {
 
     state.profilePage.posts.push(newPost);
     state.profilePage.newText = '';
-    rerenderEntireTree(state, addPost, updateNewText);
+    rerenderEntireTree();
 }
 
-export let updateNewText = (newText) => {
+export const updateNewText = (newText) => {
     state.profilePage.newText = newText;
-    rerenderEntireTree(state, addPost, updateNewText);
+    rerenderEntireTree();
+}
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer   // observer pattern
 }
 
 export default state;
