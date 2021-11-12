@@ -37,27 +37,35 @@ let store = {
         this._notifySubsriber = observer   // observer pattern
     },
 
+    _addPost() {
+        if (this._state.profilePage.newText !== "")
+        {
+            let newPost = {
+                id: 3,
+                text: this._state.profilePage.newText,
+                likesCount: 0
+            };
+
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newText = '';
+            this._notifySubsriber();
+        }
+    },
+
+    _updateNewText(newText) {
+        this._state.profilePage.newText = newText;
+        this._notifySubsriber();
+    },
+
     // object type: 'ADD_POST'
     dispatch(action) {
         if (action.type === 'ADD-POST')
         {
-            if (this._state.profilePage.newText !== "")
-            {
-                let newPost = {
-                    id: 3,
-                    text: this._state.profilePage.newText,
-                    likesCount: 0
-                };
-                
-                this._state.profilePage.posts.push(newPost);
-                this._state.profilePage.newText = '';
-                this._notifySubsriber();
-            }
+            this._addPost();      
         }
         else if (action.type === 'UPDATE-NEW-TEXT')
         {
-            this._state.profilePage.newText = action.newText;
-            this._notifySubsriber();
+            this._updateNewText(action.newText);
         }
     }
 
