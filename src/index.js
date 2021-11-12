@@ -7,7 +7,7 @@ import store from './redux/state'
 
 let rerenderEntireTree = () => {
     ReactDOM.render(                                // 'bind' привязывает контекст к функции
-        <App state={store.getState()} addPost={store.addPost.bind(store)} update={store.updateNewText.bind(store)}/>,
+        <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     );
 }

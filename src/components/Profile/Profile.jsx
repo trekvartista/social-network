@@ -36,8 +36,7 @@ function Profile(props) {
             <div className={s.posts}>
                 <MyPosts state={props.state.posts}
                             newText={props.state.newText}
-                            updateNewText={props.updateNewText}
-                            addPost={props.addPost}
+                            dispatch={props.dispatch}
                                 className={s.child}/>
             </div>
         </div>

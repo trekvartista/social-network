@@ -12,8 +12,15 @@ function MyPosts(props)  {
 
     let addPost = () => {
         // alert(text);
-        props.addPost();
-        props.updateNewText('');
+        // props.addPost();
+        props.dispatch({
+            type: 'ADD-POST',
+        })
+
+        props.dispatch({
+            type: 'UPDATE-NEW-TEXT',
+            newText: ''
+        })
         // newPost.current.value = "";  не имееш права, тупой компонент
     }
     /* alert('You do want it.'); */
@@ -21,7 +28,10 @@ function MyPosts(props)  {
     let onPostChange = () => {
         let text = newPost.current.value;
         // console.log(text)
-        props.updateNewText(text)
+        props.dispatch({
+            type: 'UPDATE-NEW-TEXT',
+            newText: text 
+        })
     }
 
     return (

@@ -20,8 +20,7 @@ function App(props) {
                     <Route path='/profile'
                             render={() => <Profile
                                     state={props.state.profilePage}
-                                    addPost={props.addPost}
-                                    updateNewText={props.update}/>} />
+                                    dispatch={props.dispatch}/>} />
 
                     <Route path='/contact' render={() => <Contact />} />
                     <Route exact path='/portfolio' render={() => <Portfolio />} />
