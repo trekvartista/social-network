@@ -1,6 +1,8 @@
 import React from 'react';
+import { addPostActionCreator, updateNewTextActionCreator } from '../../../redux/state';
 import Post from '../Post/Post';
 import s from './MyPosts.module.css'
+
 
 function MyPosts(props)  {
 
@@ -13,14 +15,22 @@ function MyPosts(props)  {
     let addPost = () => {
         // alert(text);
         // props.addPost();
-        props.dispatch({
-            type: 'ADD-POST',
-        })
 
-        props.dispatch({
-            type: 'UPDATE-NEW-TEXT',
-            newText: ''
-        })
+        // props.dispatch({
+        //     type: 'ADD-POST',
+        // })
+
+        let addPostAction = addPostActionCreator();
+        props.dispatch(addPostAction);
+
+        // props.dispatch({
+        //     type: 'UPDATE-NEW-TEXT',
+        //     newText: ''
+        // })
+
+        let updateNewTextAction = updateNewTextActionCreator('');
+        props.dispatch(updateNewTextAction);
+
         // newPost.current.value = "";  не имееш права, тупой компонент
     }
     /* alert('You do want it.'); */
@@ -28,10 +38,14 @@ function MyPosts(props)  {
     let onPostChange = () => {
         let text = newPost.current.value;
         // console.log(text)
-        props.dispatch({
-            type: 'UPDATE-NEW-TEXT',
-            newText: text 
-        })
+
+        // props.dispatch({
+        //     type: 'UPDATE-NEW-TEXT',
+        //     newText: text 
+        // })
+
+        let action = updateNewTextActionCreator(text);
+        props.dispatch(action);
     }
 
     return (

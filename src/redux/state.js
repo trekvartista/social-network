@@ -1,5 +1,8 @@
 import ava from "../images/avatarka.png";
 
+const ADD_POST = 'ADD_POST';
+const UPDATE_NEW_TEXT = 'UPDATE-NEW-TEXT';
+
 let store = {
     
     _state: {
@@ -59,16 +62,29 @@ let store = {
 
     // object type: 'ADD_POST'
     dispatch(action) {
-        if (action.type === 'ADD-POST')
+        if (action.type === ADD_POST)
         {
             this._addPost();      
         }
-        else if (action.type === 'UPDATE-NEW-TEXT')
+        else if (action.type === UPDATE_NEW_TEXT)
         {
             this._updateNewText(action.newText);
         }
     }
 
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updateNewTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_TEXT,
+        newText: text
+    }
 }
 
 export default store;
