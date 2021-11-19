@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import store from './redux/store'
+import store from './redux/redux-store';
 
 let rerenderEntireTree = () => {
     ReactDOM.render(                                // 'bind' привязывает контекст к функции
