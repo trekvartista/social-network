@@ -53,6 +53,7 @@ function MyPosts(props)  {
             <h2>My Posts</h2>
             <div>
                 <textarea  value={props.newText}
+                            placeholder={"Enter you post message"}
                             ref={newPost}
                             onChange={onPostChange}/>
             </div>
