@@ -35,7 +35,10 @@ const Sidebar = (p) => {
                             <NavLink to="/calculator" activeClassName={s.active}> Calculator </NavLink>
                         </li>
                         <li>
-                            <NavLink to="#"> something else. </NavLink>
+                            {/* <NavLink to="/https://www.youtube.com/watch?v=dQw4w9WgXcQ"> something else. </NavLink> */}
+                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+                                something else...
+                            </a>
                         </li>
                     </ul>
                 </li>
