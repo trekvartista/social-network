@@ -14,6 +14,14 @@ function Profile(props) {
             education={p.education}
         />
     ));
+
+const OnAvaSelected = (e) => {
+    if (e.target.files.length) {
+        props.savePhoto(e.target.file[0]);
+    }
+
+}
+
     return (
         <div className={s.main}>
             <div className={s.header}>
@@ -31,6 +39,7 @@ function Profile(props) {
 
             <div className={s.info}>
                 {profileElements}
+                <input type={"file"}/>
             </div>
 
             <div className={s.posts}>
