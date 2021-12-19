@@ -7,7 +7,7 @@ let initialState = {
             name: "Alex Treasure",
             city: "Bishkek",
             dateOfBirth: "1 April",
-            education:  "auca"
+            education:  "don't need no"
         }
     ],
     posts: [
