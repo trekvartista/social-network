@@ -15,12 +15,12 @@ function Profile(props) {
         />
     ));
 
-const OnAvaSelected = (e) => {
-    if (e.target.files.length) {
-        props.savePhoto(e.target.file[0]);
-    }
+// const OnAvaSelected = (e) => {
+//     if (e.target.files.length) {
+//         props.savePhoto(e.target.file[0]);
+//     }
 
-}
+// }
 
     return (
         <div className={s.main}>
