@@ -1,4 +1,3 @@
-// import ava from "../images/avatarka.png";
 import profileReducer from "./profileReducer";
 
 const ADD_POST = 'ADD_POST';
