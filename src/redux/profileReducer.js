@@ -13,6 +13,7 @@ let initialState = {
     posts: [
         {id: 1, text: "Hi there, retards!", likesCount: 0},
         {id: 2, text: "Boom, second post!", likesCount: 0},
+        {id: 3, text: "Затвра экзамен по OS и я даже не знаю как реализовать ls, однако здравствуйте!", likesCount: 0},
     ],
     newText: 'Hi, retard'
 }; 
