@@ -4,6 +4,8 @@ import s from './MyPosts.module.css'
 
 function MyPosts(props)  {
 
+    console.log(props)
+    debugger
     let postElements = props.posts.map((p) => (
         <Post message={p.text} likes={p.likesCount} />
     ));

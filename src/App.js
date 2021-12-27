@@ -6,12 +6,11 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Contact from './components/Contact/Contact';
 import Portfolio from './components/Portfolio/Portfolio';
 import Footer from './components/Footer/Footer';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 function App(props) {
-
+// debugger
     return (
-        <BrowserRouter>
             <div id="wrapper">
                 <Header />
                 <Sidebar />
@@ -19,15 +18,13 @@ function App(props) {
                     <Route exact path='/' render={() => <HomePage />} />
                     <Route path='/profile'
                             render={() => <Profile
-                                    state={props.state.profilePage}
-                                    dispatch={props.dispatch}/>} />
+                                    store={props.store} />} />
 
                     <Route path='/contact' render={() => <Contact />} />
                     <Route exact path='/portfolio' render={() => <Portfolio />} />
                 </div>
                 <Footer />
             </div>
-        </BrowserRouter>
     );
 }
 

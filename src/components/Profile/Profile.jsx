@@ -1,13 +1,14 @@
 import React from "react";
 import ava from "../../images/avatarka.png";
 import ProfileInfo from "./ProfileInfo";
-import MyPosts from "./MyPosts/MyPosts";
 import s from "./Profile.module.css";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 function Profile(props) {
-
-    let profileElements = props.state.profileInfo.map((p) => (
+    // console.log(props.store)
+    // debugger
+    let state = props.store.getState();
+    let profileElements = state.profilePage.profileInfo.map((p) => (
         <ProfileInfo
             name={p.name}
             city={p.city}
@@ -15,13 +16,10 @@ function Profile(props) {
             education={p.education}
         />
     ));
-
 // const OnAvaSelected = (e) => {
 //     if (e.target.files.length) {
 //         props.savePhoto(e.target.file[0]);
 //     }
-
-// }
 
     return (
         <div className={s.main}>
@@ -44,9 +42,7 @@ function Profile(props) {
             </div>
 
             <div className={s.posts}>
-                <MyPostsContainer posts={props.state.posts}
-                                    newText={props.state.newText}
-                                    dispatch={props.dispatch}
+                <MyPostsContainer store={props.store}
                                     className={s.child}/>
             </div>
         </div>
