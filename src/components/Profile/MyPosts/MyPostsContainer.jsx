@@ -31,7 +31,7 @@ function MyPostsContainer(props)  {
     }
 
     return (
-        <MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={props.posts}/>
+        <MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={props.posts} newText={props.newText}/>
     );
 }
 

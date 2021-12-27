@@ -3,6 +3,7 @@ import ava from "../../images/avatarka.png";
 import ProfileInfo from "./ProfileInfo";
 import MyPosts from "./MyPosts/MyPosts";
 import s from "./Profile.module.css";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 function Profile(props) {
 
@@ -43,10 +44,10 @@ function Profile(props) {
             </div>
 
             <div className={s.posts}>
-                <MyPosts state={props.state.posts}
-                            newText={props.state.newText}
-                            dispatch={props.dispatch}
-                                className={s.child}/>
+                <MyPostsContainer posts={props.state.posts}
+                                    newText={props.state.newText}
+                                    dispatch={props.dispatch}
+                                    className={s.child}/>
             </div>
         </div>
     );
