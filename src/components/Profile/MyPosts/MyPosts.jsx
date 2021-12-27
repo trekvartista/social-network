@@ -1,5 +1,4 @@
 import React from 'react';
-import { addPostActionCreator, updateNewTextActionCreator } from '../../../redux/store';
 import Post from '../Post/Post';
 import s from './MyPosts.module.css'
 
@@ -12,40 +11,14 @@ function MyPosts(props)  {
 
     let newPost = React.createRef();
 
-    let addPost = () => {
-        // alert(text);
-        // props.addPost();
-
-        // props.dispatch({
-        //     type: 'ADD-POST',
-        // })
-
-        let addPostAction = addPostActionCreator();
-        props.dispatch(addPostAction);
-
-        // props.dispatch({
-        //     type: 'UPDATE-NEW-TEXT',
-        //     newText: ''
-        // })
-
-        let updateNewTextAction = updateNewTextActionCreator('');
-        props.dispatch(updateNewTextAction);
-
-        // newPost.current.value = "";  не имееш права, тупой компонент
+    let onAddPost = () => {
+        props.addPost();
     }
-    /* alert('You do want it.'); */
 
     let onPostChange = () => {
         let text = newPost.current.value;
-        // console.log(text)
 
-        // props.dispatch({
-        //     type: 'UPDATE-NEW-TEXT',
-        //     newText: text 
-        // })
-
-        let action = updateNewTextActionCreator(text);
-        props.dispatch(action);
+        props.updateNewPostText(text);
     }
 
     return (
@@ -53,13 +26,13 @@ function MyPosts(props)  {
             <h2>My Posts</h2>
             <div>
                 <textarea  value={props.newText}
-                            placeholder={"Enter you post message"}
+                            placeholder={"Enter your post message"}
                             ref={newPost}
                             onChange={onPostChange}/>
             </div>
 
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={s.post}>
                 {postElements}
