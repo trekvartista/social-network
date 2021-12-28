@@ -8,6 +8,6 @@ let reducers = combineReducers({
 
 let store = createStore(reducers);  // should I use it in this project? useReducer, useContext and other hooks could probably give the same results
 
-window.store = store
+// window.store = store
 
 export default store;
