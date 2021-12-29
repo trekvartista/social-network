@@ -7,6 +7,7 @@ import Contact from './components/Contact/Contact';
 import Portfolio from './components/Portfolio/Portfolio';
 import Footer from './components/Footer/Footer';
 import { Route } from 'react-router-dom';
+import Users from './components/Users/Users';
 
 function App(props) {
 // debugger
@@ -21,6 +22,7 @@ function App(props) {
                                     store={props.store} />} />
 
                     <Route path='/contact' render={() => <Contact />} />
+                    <Route path='/users' render={() => <Users />}/>
                     <Route exact path='/portfolio' render={() => <Portfolio />} />
                 </div>
                 <Footer />
