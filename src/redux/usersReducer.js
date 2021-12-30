@@ -33,6 +33,16 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
     switch(action.type) {
         case FOLLOW:
+            let stateCopy = {
+                ...state,
+                users: state.users.map( u => {
+                    if (u.id === action.userId) {
+                        return {...u, isFriend: true}   // no need to copy entire state
+                    }
+                    return {...u}
+                } )
+
+            }
         case UNFOLLOW:
 
         default:
