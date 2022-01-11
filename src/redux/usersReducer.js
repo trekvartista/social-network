@@ -33,7 +33,8 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FOLLOW:
+        case FOLLOW: {
+
             let stateCopy = {
                 ...state,
                 users: state.users.map( u => {
@@ -42,9 +43,11 @@ const usersReducer = (state = initialState, action) => {
                     }
                     return {...u}
                 } )
-
+                
             }
-        case UNFOLLOW:
+        }
+        case UNFOLLOW: {
+
             let stateCopy = {
                 ...state,
                 users: state.users.map( u => {
@@ -53,8 +56,9 @@ const usersReducer = (state = initialState, action) => {
                     }
                     return {...u}
                 } )
-
+                
             }
+        }
         case SET_USERS:
             return {...state, users: [...state.users, ...action.users]}
         
@@ -64,8 +68,8 @@ const usersReducer = (state = initialState, action) => {
 
 }
 
-export const followAC = () => ({type: FOLLOW, userId})
-export const unfollowAC = () => ({type: UNFOLLOW, userId})
-export const setUsersAC = () => ({type: SET_USERS, users})
+export const followAC = (userId) => ({type: FOLLOW, userId})
+export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
+export const setUsersAC = (users) => ({type: SET_USERS, users})
 
 export default usersReducer;
