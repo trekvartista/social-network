@@ -6,13 +6,13 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { useContext } from "react";
 import { ReactReduxContext } from "react-redux";
 
-function Profile(props) {
+function Profile() {
     // console.log(props.store)
     // debugger
     // let state = props.store.getState();
 
     // EOWIH: Accessing Redux store directly in the component (unusual practise but, whatever)
-    
+
     const { store } = useContext(ReactReduxContext);
     let state = store.getState();
 
