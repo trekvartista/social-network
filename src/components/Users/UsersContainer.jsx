@@ -5,7 +5,7 @@ import Users from './Users';
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users        // in Users: props.users
     }
 }
 

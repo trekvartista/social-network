@@ -1,0 +1,12 @@
+.main {
+    position: absolute;
+    width: 69.3%;
+    height: 100%;
+    left: 250px;
+    background-color: pink;
+}
+
+.userPhoto {
+    width: 100px;
+    height: 100px;
+}

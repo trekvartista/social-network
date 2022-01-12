@@ -7,6 +7,7 @@ let initialState = {
         {
             id: 1,
             isFriend: true,
+            avatarUrl: 'http://cdn.onlinewebfonts.com/svg/img_264570.png',
             firstName: 'Ricardo',
             lastName: 'Milos',
             status: 'online',
@@ -18,6 +19,7 @@ let initialState = {
         {
             id: 2,
             isFriend: false,
+            avatarUrl: 'http://cdn.onlinewebfonts.com/svg/img_264570.png',
             firstName: 'Sadyr',
             lastName: 'Japarov',
             status: 'online',
@@ -45,6 +47,7 @@ const usersReducer = (state = initialState, action) => {
                 } )
                 
             }
+            return stateCopy;
         }
         case UNFOLLOW: {
 
@@ -58,9 +61,10 @@ const usersReducer = (state = initialState, action) => {
                 } )
                 
             }
+            return stateCopy;
         }
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [...state.users, ...action.users]}     // combine users from state and from some action
         
         default:
             return state
