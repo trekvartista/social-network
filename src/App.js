@@ -16,11 +16,8 @@ function App() {
                 <Header />
                 <Sidebar />
                 <div>
-                    <Route exact path='/' render={() => <HomePage />} />
-                    <Route path='/profile'
-                            render={() => <Profile
-                                     />} />
-
+                    <Route path='/' exact={true} render={() => <HomePage />} />
+                    <Route path='/profile' render={() => <Profile/>} />
                     <Route path='/contact' render={() => <Contact />} />
                     <Route path='/users' render={() => <UsersContainer />}/>
                     <Route exact path='/portfolio' render={() => <Portfolio />} />

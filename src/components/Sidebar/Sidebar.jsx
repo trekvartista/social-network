@@ -14,7 +14,7 @@ const Sidebar = (p) => {
             <ul id="mySidebar" className={s.sidebar}>
                 <a href="javascript:void(0)" className={s.closebtn} onClick={closeNav}>&times;</a>
                 <li>
-                    <NavLink activeClassName={s.active} to='/'>
+                    <NavLink activeClassName={s.active} to='/' exact={true}>
                         Home
                     </NavLink>
                 </li>
@@ -27,7 +27,7 @@ const Sidebar = (p) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dialogs' activeClassName={s.active}>
+                            <NavLink to='/users' activeClassName={s.active}>
                                 Messages
                             </NavLink>
                         </li>
