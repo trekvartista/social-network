@@ -36,7 +36,7 @@ const Sidebar = (p) => {
                         </li>
                         <li>
                             {/* <NavLink to="/https://www.youtube.com/watch?v=dQw4w9WgXcQ"> something else. </NavLink> */}
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noreferrer">
                                 something else...
                             </a>
                         </li>

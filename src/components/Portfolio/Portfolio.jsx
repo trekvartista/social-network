@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./Portfolio.module.css";
-import sticker from "../../images/Sticker_1.png";
 import git from "../../images/github-logo.png";
 import linkedin from "../../images/linkedin-logo.png";
 import vk from "../../images/vk-logo.png";
@@ -27,6 +26,7 @@ const Portfolio = () => {
                         <a
                             href="https://github.com/trekvartista"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             <img src={git} width="30px" height="30px" alt="" />
                         </a>

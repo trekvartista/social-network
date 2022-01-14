@@ -40,6 +40,7 @@ const profileReducer = (state = initialState, action) => {
                 // this._notifySubsriber();
                 return stateCopy
             }
+            return state
         }
         case UPDATE_NEW_TEXT: {
             

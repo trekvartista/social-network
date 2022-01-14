@@ -8,7 +8,7 @@ let Users = (props) => {
         </div>
         {
             props.users.map( u => <li key={u.id} className={s.list}>
-                <img className={s.userPhoto} src={u.avatarUrl} />
+                <img className={s.userPhoto} src={u.avatarUrl} alt=""/>
                 <div className={s.userInfo}></div>
                 {u.isFriend
                     ? <button onClick={() => { props.unfollow(u.id) } } className={s.btn}>Unfollow</button>
