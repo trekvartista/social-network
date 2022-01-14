@@ -29,7 +29,10 @@ let initialState = {
         //     }
         // },
         // {}
-    ]
+    ],
+    pageSize: 5,
+    totalUsersCount: 10,
+    currentPage: 1
 
 }
 
@@ -64,7 +67,7 @@ const usersReducer = (state = initialState, action) => {
             return stateCopy;
         }
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users]}     // combine users from state and from some action
+            return {...state, users: action.users}
         
         default:
             return state
