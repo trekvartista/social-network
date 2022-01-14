@@ -6,6 +6,9 @@
     padding: 20px;
 }
 
+.selectedPage {
+    font-weight: bold;
+}
 
 .list {
     /* overflow: hidden; */
