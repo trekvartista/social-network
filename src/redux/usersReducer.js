@@ -4,31 +4,31 @@ const SET_USERS = 'SET_USERS'
 
 let initialState = {
     users: [
-        {
-            id: 1,
-            isFriend: true,
-            avatarUrl: 'http://cdn.onlinewebfonts.com/svg/img_264570.png',
-            firstName: 'Ricardo',
-            lastName: 'Milos',
-            status: 'online',
-            location: {
-                country: 'Memeland',
-                city: 'Memass'
-            }
-        },
-        {
-            id: 2,
-            isFriend: false,
-            avatarUrl: 'http://cdn.onlinewebfonts.com/svg/img_264570.png',
-            firstName: 'Sadyr',
-            lastName: 'Japarov',
-            status: 'online',
-            location: {
-                country: 'Kyrgyzstan',
-                city: 'Bishkek'
-            }
-        },
-        {}
+        // {
+        //     id: 1,
+        //     isFriend: true,
+        //     avatarUrl: 'http://cdn.onlinewebfonts.com/svg/img_264570.png',
+        //     firstName: 'Ricardo',
+        //     lastName: 'Milos',
+        //     status: 'online',
+        //     location: {
+        //         country: 'Memeland',
+        //         city: 'Memass'
+        //     }
+        // },
+        // {
+        //     id: 2,
+        //     isFriend: false,
+        //     avatarUrl: 'http://cdn.onlinewebfonts.com/svg/img_264570.png',
+        //     firstName: 'Sadyr',
+        //     lastName: 'Japarov',
+        //     status: 'online',
+        //     location: {
+        //         country: 'Kyrgyzstan',
+        //         city: 'Bishkek'
+        //     }
+        // },
+        // {}
     ]
 
 }
