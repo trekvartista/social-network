@@ -6,21 +6,24 @@ import * as axios from 'axios';
 class Users extends React.Component {
     
     componentDidMount() {
+        this.props.switchLoading(true)
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.switchLoading(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
             });
             // console.log('i was \'ere')
-        }
+    }
         
-        onPageChange = (pageNum) => {
-            
-            this.props.setCurrentPage(pageNum)
-            axios
+    onPageChange = (pageNum) => {
+        this.props.switchLoading(true)
+        this.props.setCurrentPage(pageNum)
+        axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.switchLoading(false)
                 this.props.setUsers(response.data.items)
                 // console.log(this.props.currentPage)  // store will return the changed number of page only AFTER this 'onClick' is handled
             });
@@ -37,6 +40,7 @@ class Users extends React.Component {
         }
 
         return <ul className={s.main}>
+            {this.props.isLoading ? <img className={s.loading} src="https://www.woolensilk.com/pub/static/frontend/Alothemes/default/en_US/Magiccart_Alothemes/images/loading.gif"/> : null}
             <div> 
                 <h1>Users</h1>
             </div>
@@ -57,6 +61,7 @@ class Users extends React.Component {
                     <img className={s.userPhoto} src={ u.photos.small != null ? u.photos.small : "https://png.pngtree.com/png-vector/20190803/ourlarge/pngtree-avatar-user-basic-abstract-circle-background-flat-color-icon-png-image_1647265.jpg" } alt=""/>
                     <div className={s.userInfo}>
                         <span>{u.name}</span>
+                        <br/>
                         <span>{u.status}</span>
                     </div>
                     {u.isFriend

@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_PAGE = 'SET_PAGE'
 const SET_USERS_COUNT = 'SET_USERS_COUNT'
+const SWITCH_LOADING = 'SWITCH_LOADING'
 
 let initialState = {
     users: [
@@ -34,8 +35,8 @@ let initialState = {
     ],
     pageSize: 100,
     totalUsersCount: 0,
-    currentPage: 1
-
+    currentPage: 1,
+    isLoading: true
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -76,6 +77,9 @@ const usersReducer = (state = initialState, action) => {
 
         case SET_USERS_COUNT:
             return {...state, totalUsersCount: action.usersCount}
+
+        case SWITCH_LOADING:
+            return {...state, isLoading: action.isLoading}
         
         default:
             return state
@@ -88,5 +92,6 @@ export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users) => ({type: SET_USERS, users})
 export const setCurrentPageAC = (pageNum) => ({type: SET_PAGE, pageNum})
 export const setTotalUsersCountAC = (usersCount) => ({type: SET_USERS_COUNT, usersCount})
+export const switchLoadingAC = (isLoading) => ({type: SWITCH_LOADING, isLoading})
 
 export default usersReducer;
