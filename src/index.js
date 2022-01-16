@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-
 import 'bootstrap/dist/css/bootstrap.css';
 import store from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';

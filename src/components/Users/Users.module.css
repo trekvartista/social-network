@@ -6,6 +6,15 @@
     padding: 20px;
 }
 
+#pages {
+    cursor: pointer;
+    font-size: 25px;
+}
+
+#pages:hover {
+    background-color: lightgray;
+}
+
 .selectedPage {
     font-weight: bold;
 }

@@ -7,11 +7,21 @@ class Users extends React.Component {
     
     componentDidMount() {
         axios
-            .get("https://social-network.samuraijs.com/api/1.0/users")
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.totalUsersCount}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
             });
-            console.log('i was \'ere')
+            // console.log('i was \'ere')
+    }
+
+    onPageChange = (pageNum) => {
+
+        this.props.setCurrentPage(pageNum)
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.totalUsersCount}`)
+            .then(response => {
+                // console.log(this.props.currentPage)  // store will return the changed number of page only AFTER this 'onClick' is handled
+            });
     }
     
     render() {
@@ -32,7 +42,11 @@ class Users extends React.Component {
             <div>
                 {
                     pages.map( p => {
-                        return <span className={this.props.currentPage === p && s.selectedPage } >{p}</span>
+                        return <span
+                            id={s.pages}
+                            className={this.props.currentPage === p && s.selectedPage } 
+                            onClick={(e) => this.onPageChange(p)}
+                        >  {p} </span>
                     } )
                 }
             </div>
