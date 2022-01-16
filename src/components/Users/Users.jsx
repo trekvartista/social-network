@@ -7,19 +7,21 @@ class Users extends React.Component {
     
     componentDidMount() {
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.totalUsersCount}`)
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
             });
             // console.log('i was \'ere')
-    }
-
-    onPageChange = (pageNum) => {
-
-        this.props.setCurrentPage(pageNum)
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.totalUsersCount}`)
+        }
+        
+        onPageChange = (pageNum) => {
+            
+            this.props.setCurrentPage(pageNum)
+            axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.setUsers(response.data.items)
                 // console.log(this.props.currentPage)  // store will return the changed number of page only AFTER this 'onClick' is handled
             });
     }
