@@ -28,7 +28,7 @@ const Sidebar = (p) => {
                         </li>
                         <li>
                             <NavLink to='/users' activeClassName={s.active}>
-                                Messages
+                                Users
                             </NavLink>
                         </li>
                         <li>
