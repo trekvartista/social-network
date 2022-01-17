@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Users.module.css';
 import * as axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import loading from '../../images/loading.gif';
 
 
 class Users extends React.Component {
@@ -40,8 +41,11 @@ class Users extends React.Component {
             pages.push (i + 1);
         }
 
+        if (this.props.isLoading) {
+            return <img className={s.loading} src={loading}/>
+        }
+
         return <ul className={s.main}>
-            {this.props.isLoading ? <img className={s.loading} src="https://www.woolensilk.com/pub/static/frontend/Alothemes/default/en_US/Magiccart_Alothemes/images/loading.gif"/> : null}
             <div> 
                 <h1>Users</h1>
             </div>
