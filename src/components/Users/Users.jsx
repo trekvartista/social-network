@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Users.module.css';
 import * as axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 
 class Users extends React.Component {
@@ -58,7 +59,9 @@ class Users extends React.Component {
             </div>
             {
                 this.props.users.map( u => <li key={u.id} className={s.list}>
-                    <img className={s.userPhoto} src={ u.photos.small != null ? u.photos.small : "https://png.pngtree.com/png-vector/20190803/ourlarge/pngtree-avatar-user-basic-abstract-circle-background-flat-color-icon-png-image_1647265.jpg" } alt=""/>
+                    <NavLink to={'/profile/' + u.id}>
+                        <img className={s.userPhoto} src={ u.photos.small != null ? u.photos.small : "https://png.pngtree.com/png-vector/20190803/ourlarge/pngtree-avatar-user-basic-abstract-circle-background-flat-color-icon-png-image_1647265.jpg" } alt=""/>
+                    </NavLink>
                     <div className={s.userInfo}>
                         <span>{u.name}</span>
                         <br/>
