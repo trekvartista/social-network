@@ -29,29 +29,18 @@ const profileReducer = (state = initialState, action) => {
             if (state.newText !== "")
             {
                 let newPost = {
-                    id: 3,
+                    id: 4,
                     text: state.newText,
                     likesCount: 0
                 };
-                
-                let stateCopy = {...state};
-                stateCopy.posts = [...state.posts];
-                
-                stateCopy.posts.push(newPost);
-                stateCopy.newText = '';
                 // this._notifySubsriber();
-                return stateCopy
+                return {...state, posts: [...state.posts, newPost], newText: ''}    // newText ??
             }
             return state
         }
         case UPDATE_NEW_TEXT: {
-            
-            let stateCopy = {...state};
-            // stateCopy.posts = [...state.posts]
-            
-            stateCopy.newText = action.newText;
             // this._notifySubsriber();
-            return stateCopy
+            return {...state, newText: action.text}
         }
         case SET_USER_PROFILE:
             return {...state, profileInfo: action.profile};

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import ava from "../../images/avatarka.png";
+import loading from "../../images/loading.gif";
 import ProfileInfo from "./ProfileInfo";
 import s from "./Profile.module.css";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
@@ -30,9 +30,11 @@ function Profile(props) {
                 props.setUserProfile(response.data)
                 // console.log(response.data)
             });
-    }, []);
+    });
 
-    debugger
+    if (!props.profile) {
+        return <img className={s.loading} src={loading}/>
+    }
     return (
         <div className={s.main}>
             <div className={s.header}>
@@ -45,11 +47,13 @@ function Profile(props) {
                 />
             </div>
             <div className={s.ava}>
-                <img id={s.ava} src={ava} alt="" />
+                <img id={s.ava} src={props.profile.photos.small} alt="" />
             </div>
 
             <div className={s.info}>
                 {/* {profileElements} */}
+                <p style={{fontSize: 25}}> {props.profile.fullName} </p>
+                <p> {props.profile.aboutMe} </p>
             </div>
 
             <div className={s.posts}>

@@ -10,6 +10,15 @@
         'post post post post'; */
     grid-gap: 0px;
 }
+
+.loading {
+    z-index: 1;
+    width: 25%;
+    /* margin: auto; */
+    position: absolute;
+    top: 35%;
+    left: 35%;
+}
     
 .header {
     /* grid-area: header; */
@@ -51,12 +60,14 @@
     left: 450px;
     top: 311px;
 
-    padding-top: 50px;
+    padding: 20px;
 }
+
 .info p {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 20px;
-    line-height: 5px;
+    font-size: 15px;
+    line-height: 15px;
+    text-indent: 0em;
 }
 
 .posts {
