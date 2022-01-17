@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import Sidebar from './components/Sidebar/Sidebar';
 import Contact from './components/Contact/Contact';
 import Portfolio from './components/Portfolio/Portfolio';
@@ -17,7 +17,7 @@ function App() {
                 <Sidebar />
                 <div>
                     <Route path='/' exact={true} render={() => <HomePage />} />
-                    <Route path='/profile' render={() => <Profile/>} />
+                    <Route path='/profile' render={() => <ProfileContainer/>} />
                     <Route path='/contact' render={() => <Contact />} />
                     <Route path='/users' render={() => <UsersContainer />}/>
                     <Route exact path='/portfolio' render={() => <Portfolio />} />

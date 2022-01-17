@@ -1,15 +1,17 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_TEXT = 'UPDATE-NEW-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let initialState = {
-    profileInfo: [
-        {
-            name: "Alex Treasure",
-            city: "Bishkek",
-            dateOfBirth: "1 April",
-            education:  "don't need no"
-        }
-    ],
+    // profileInfo: [
+    //     {
+    //         name: "Alex Treasure",
+    //         city: "Bishkek",
+    //         dateOfBirth: "1 April",
+    //         education:  "don't need no"
+    //     }
+    // ],
+    profileInfo: null,
     posts: [
         {id: 1, text: "Hi there, retards!", likesCount: 0},
         {id: 2, text: "Boom, second post!", likesCount: 0},
@@ -51,9 +53,15 @@ const profileReducer = (state = initialState, action) => {
             // this._notifySubsriber();
             return stateCopy
         }
+        case SET_USER_PROFILE:
+            return {...state, profileInfo: action.profile};
         default:
             return state
     }
 }
+
+export const addPostActionCreator = () => ({type: ADD_POST})
+export const updateNewTextActionCreator = (text) => ({type: UPDATE_NEW_TEXT, text})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 export default profileReducer;
