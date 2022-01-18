@@ -8,28 +8,31 @@ import { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 
 function Profile(props) {
-
-// const OnAvaSelected = (e) => {
-//     if (e.target.files.length) {
-//         props.savePhoto(e.target.file[0]);
-//     }
+    // const OnAvaSelected = (e) => {
+    //     if (e.target.files.length) {
+    //         props.savePhoto(e.target.file[0]);
+    //     }
     let match = useRouteMatch("/profile/:userId?");
-    
-    useEffect( () => {
+
+    useEffect(() => {
+
+        let userId = match.params.userId;
+
+        if (!userId) { userId = 2 }
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/${match.params.userId}`)
-            .then(response => {
+            .get(
+                `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
+            )
+            .then((response) => {
                 // debugger
-                props.setUserProfile(response.data)
+                props.setUserProfile(response.data);
                 // console.log(response.data)
             });
     });
 
     if (!props.profile) {
-        return <img className={s.loading} src={loading}/>
+        return <img className={s.loading} src={loading} />;
     }
-
-
 
     return (
         <div className={s.main}>
@@ -47,12 +50,12 @@ function Profile(props) {
             </div>
 
             <div className={s.info}>
-                <p style={{fontSize: 25}}> {props.profile.fullName} </p>
+                <p style={{ fontSize: 25 }}> {props.profile.fullName} </p>
                 <p> {props.profile.aboutMe} </p>
             </div>
 
             <div className={s.posts}>
-                <MyPostsContainer className={s.child}/>
+                <MyPostsContainer className={s.child} />
             </div>
         </div>
     );
