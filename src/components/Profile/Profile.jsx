@@ -13,7 +13,7 @@ function Profile(props) {
 //     if (e.target.files.length) {
 //         props.savePhoto(e.target.file[0]);
 //     }
-    let match = useRouteMatch("/profile/:userId");
+    let match = useRouteMatch("/profile/:userId?");
     
     useEffect( () => {
         axios
