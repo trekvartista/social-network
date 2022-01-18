@@ -5,26 +5,19 @@ import ProfileInfo from "./ProfileInfo";
 import s from "./Profile.module.css";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { useEffect } from "react";
+import { useRouteMatch } from "react-router-dom";
 
 function Profile(props) {
 
-    // debugger
-    // let profileElements = state.profilePage.profileInfo.map((p) => (
-    //     <ProfileInfo
-    //         name={p.name}
-    //         city={p.city}
-    //         dateOfBirth={p.dateOfBirth}
-    //         education={p.education}
-    //     />
-    // ));
 // const OnAvaSelected = (e) => {
 //     if (e.target.files.length) {
 //         props.savePhoto(e.target.file[0]);
 //     }
+    let match = useRouteMatch("/profile/:userId");
     
     useEffect( () => {
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+            .get(`https://social-network.samuraijs.com/api/1.0/profile/${match.params.userId}`)
             .then(response => {
                 // debugger
                 props.setUserProfile(response.data)
@@ -35,6 +28,9 @@ function Profile(props) {
     if (!props.profile) {
         return <img className={s.loading} src={loading}/>
     }
+
+
+
     return (
         <div className={s.main}>
             <div className={s.header}>
