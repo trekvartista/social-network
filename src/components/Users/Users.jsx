@@ -1,85 +1,109 @@
-import React from 'react';
-import s from './Users.module.css';
-import * as axios from 'axios';
-import { NavLink } from 'react-router-dom';
-import loading from '../../images/loading.gif';
+import React from "react";
+import s from "./Users.module.css";
+import * as axios from "axios";
+import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import loading from "../../images/loading.gif";
 
+let Users = (props) => {
 
-class Users extends React.Component {
-    
-    componentDidMount() {
-        this.props.switchLoading(true)
+    useEffect(() => {
+        props.switchLoading(true);
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.switchLoading(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
+            .get(
+                `https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`
+            )
+            .then((response) => {
+                // debugger
+                props.switchLoading(false);
+                props.setUsers(response.data.items);
+                props.setTotalUsersCount(response.data.totalCount);
             });
-            // console.log('i was \'ere')
-    }
-        
-    onPageChange = (pageNum) => {
-        this.props.switchLoading(true)
-        this.props.setCurrentPage(pageNum)
+        // console.log('i was \'ere')
+    }, []);
+
+    let onPageChange = (pageNum) => {
+        props.switchLoading(true);
+        props.setCurrentPage(pageNum);
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.switchLoading(false)
-                this.props.setUsers(response.data.items)
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${props.pageSize}`)
+            .then((response) => {
+                props.switchLoading(false);
+                props.setUsers(response.data.items);
                 // console.log(this.props.currentPage)  // store will return the changed number of page only AFTER this 'onClick' is handled
             });
+    };
+
+    let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );
+
+    let pages = [];
+
+    for (let i = 0; i < pagesCount; ++i) {
+        pages.push(i + 1);
     }
-    
-    render() {
 
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+    if (props.isLoading) {
+        return <img className={s.loading} src={loading} />;
+    }
 
-        let pages = [];
-
-        for (let i = 0; i < pagesCount; ++i) {
-            pages.push (i + 1);
-        }
-
-        if (this.props.isLoading) {
-            return <img className={s.loading} src={loading}/>
-        }
-
-        return <ul className={s.main}>
-            <div> 
+    return (
+        <ul className={s.main}>
+            <div>
                 <h1>Users</h1>
             </div>
 
             <div>
-                {
-                    pages.map( p => {
-                        return <span
-                            id={s.pages}
-                            className={this.props.currentPage === p && s.selectedPage } 
-                            onClick={(e) => this.onPageChange(p)}
-                        >  {p} </span>
-                    } )
-                }
+                {pages.map((p) => {
+                    return (
+                        <span id={s.pages}
+                            className={ props.currentPage === p && s.selectedPage }
+                            onClick={(e) => onPageChange(p)} >
+                            {" "} {p} {" "}
+                        </span>
+                    );
+                })}
             </div>
-            {
-                this.props.users.map( u => <li key={u.id} className={s.list}>
-                    <NavLink to={'/profile/' + u.id}>
-                        <img className={s.userPhoto} src={ u.photos.small != null ? u.photos.small : "https://png.pngtree.com/png-vector/20190803/ourlarge/pngtree-avatar-user-basic-abstract-circle-background-flat-color-icon-png-image_1647265.jpg" } alt=""/>
+            {props.users.map((u) => (
+                <li key={u.id} className={s.list}>
+                    <NavLink to={"/profile/" + u.id}>
+                        <img
+                            className={s.userPhoto}
+                            src={
+                                u.photos.small != null
+                                    ? u.photos.small
+                                    : "https://png.pngtree.com/png-vector/20190803/ourlarge/pngtree-avatar-user-basic-abstract-circle-background-flat-color-icon-png-image_1647265.jpg"
+                            }
+                            alt=""
+                        />
                     </NavLink>
                     <div className={s.userInfo}>
                         <span>{u.name}</span>
-                        <br/>
+                        <br />
                         <span>{u.status}</span>
                     </div>
-                    {u.isFriend
-                        ? <button onClick={() => { this.props.unfollow(u.id) } } className={s.btn}>Unfollow</button>
-                        : <button onClick={() => { this.props.follow(u.id) } } className={s.btn}>Follow</button>
-                    }
-                    </li>
-                )
-            }
+                    {u.isFriend ? (
+                        <button
+                            onClick={() => {
+                                props.unfollow(u.id);
+                            }}
+                            className={s.btn}
+                        >
+                            Unfollow
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => {
+                                props.follow(u.id);
+                            }}
+                            className={s.btn}
+                        >
+                            Follow
+                        </button>
+                    )}
+                </li>
+            ))}
         </ul>
-    }
-}
+    );
+};
 
 export default Users;
