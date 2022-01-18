@@ -51,7 +51,6 @@ function Profile(props) {
             </div>
 
             <div className={s.info}>
-                {/* {profileElements} */}
                 <p style={{fontSize: 25}}> {props.profile.fullName} </p>
                 <p> {props.profile.aboutMe} </p>
             </div>
