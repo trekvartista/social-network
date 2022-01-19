@@ -4,21 +4,22 @@ import * as axios from "axios";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import loading from "../../images/loading.gif";
+import { getUsers } from "../../api/api";
 
 let Users = (props) => {
 
     useEffect(() => {
         props.switchLoading(true);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`
-            )
+
+        getUsers(props.currentPage, props.pageSize)
             .then((response) => {
                 // debugger
                 props.switchLoading(false);
                 props.setUsers(response.data.items);
                 props.setTotalUsersCount(response.data.totalCount);
             });
+
+
         // console.log('i was \'ere')
     }, []);
 
@@ -81,25 +82,18 @@ let Users = (props) => {
                         <br />
                         <span>{u.status}</span>
                     </div>
-                    {u.isFriend ? (
-                        <button
-                            onClick={() => {
-                                props.unfollow(u.id);
-                            }}
-                            className={s.btn}
-                        >
+                    {u.isFriend
+                        ? <button
+                            onClick={() => {props.unfollow(u.id); }}
+                            className={s.btn}>
                             Unfollow
                         </button>
-                    ) : (
-                        <button
-                            onClick={() => {
-                                props.follow(u.id);
-                            }}
-                            className={s.btn}
-                        >
+                        : <button
+                            onClick={() => {props.follow(u.id); }}
+                            className={s.btn}>
                             Follow
                         </button>
-                    )}
+                    }
                 </li>
             ))}
         </ul>
