@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -8,12 +7,13 @@ import Portfolio from './components/Portfolio/Portfolio';
 import Footer from './components/Footer/Footer';
 import { Route } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 function App() {
 // debugger
     return (
             <div id="wrapper">
-                <Header />
+                <HeaderContainer />
                 <Sidebar />
                 <div>
                     <Route path='/' exact={true} render={() => <HomePage />} />
