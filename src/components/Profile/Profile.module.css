@@ -35,11 +35,10 @@
     padding: 20px;
 }
 .ava {
-    /* grid-area: ava; */
     position: absolute;
     
     left: 250px;
-    top: 311px; /* ??? */
+    top: 266px;
     height: 200px;
     width: 200px;
     background-color: chocolate;
@@ -58,7 +57,7 @@
     height: 200px;
     position: absolute;
     left: 450px;
-    top: 311px;
+    top: 266px;
 
     padding: 20px;
 }
@@ -78,5 +77,5 @@
     width: 1020px;
     height: auto;
     
-    top: 511px;
+    top: 466px;
 }
