@@ -6,6 +6,7 @@ import s from "./Profile.module.css";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
+import { getUserProfile } from "../../api/api";
 
 function Profile(props) {
     // const OnAvaSelected = (e) => {
@@ -19,11 +20,9 @@ function Profile(props) {
 
 
         if (!userId) { userId = 21912 }
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then((response) => {
-                // debugger
-                props.setUserProfile(response.data);
+        getUserProfile(userId)
+            .then((data) => {
+                props.setUserProfile(data);
                 // console.log(response.data)
             });
     }, [userId]);
