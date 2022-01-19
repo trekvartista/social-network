@@ -13,12 +13,12 @@ function Profile(props) {
     //         props.savePhoto(e.target.file[0]);
     //     }
     let match = useRouteMatch("/profile/:userId?");
+    let userId = match.params.userId;
 
     useEffect(() => {
 
-        let userId = match.params.userId;
 
-        if (!userId) { userId = 2 }
+        if (!userId) { userId = 21912 }
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then((response) => {
@@ -26,7 +26,7 @@ function Profile(props) {
                 props.setUserProfile(response.data);
                 // console.log(response.data)
             });
-    }, []);
+    }, [userId]);
 
     if (!props.profile) {
         return <img className={s.loading} src={loading} />;
