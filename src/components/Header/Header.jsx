@@ -3,16 +3,16 @@ import s from './Header.module.css'
 
 function Header() {
 
-    function openNav() {
+    let openNav = () => {
         document.getElementById("mySidebar").style.width = "250px";
     }
 
     return (
         <div className={s.main}>
-            <h2> a Very useful website... </h2>
             <span className={s.open} onClick={openNav}>
                 &#9776; Open
             </span>
+            <h2> It's a very-very useful website... </h2>
         </div>
     );
 }

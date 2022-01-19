@@ -1,18 +1,29 @@
 import React from "react";
+import { useState } from "react";
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Sidebar.module.css";
 
 const Sidebar = (p) => {
-    function closeNav() {
+
+    // const closeButtonRef = useRef(null);
+    // const [visible, setVisibility] = useState(false);
+
+    const closeNav = () => {
         // document.getElementById("ddt").setAttribute('aria-expanded', 'false');
         // console.log(document.getElementById("ddt").getAttribute('aria-expanded'));
         document.getElementById("mySidebar").style.width = "0";
+
+        // setVisibility(false);
+        // console.log('Value: ', closeButtonRef.current?.value)
     }
 
     return (
         <div>
-            <ul id="mySidebar" className={s.sidebar}>
-                <a href="javascript:void(0)" className={s.closebtn} onClick={closeNav}>&times;</a>
+            {  
+
+                <ul id="mySidebar" className={s.sidebar}>
+                <a className={s.closebtn} onClick={closeNav}>&times;</a>
                 <li>
                     <NavLink activeClassName={s.active} to='/' exact={true}>
                         Home
@@ -53,6 +64,7 @@ const Sidebar = (p) => {
                     </NavLink>
                 </li>
             </ul>
+            }
         </div>
     );
 };
