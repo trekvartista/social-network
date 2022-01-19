@@ -5,7 +5,8 @@ import { authUser } from '../../redux/authReducer';
 
 let mapStateToProps = (state) => {
     return {
-
+        login: state.auth.login,
+        isAuthorized: state.auth.isAuthorized
     }
 }
 

@@ -29,7 +29,10 @@ function Header(props) {
                 &#9776; Open
             </span>
             <div className={s.login}>
-                <NavLink to='/login'>Login</NavLink>
+                { props.isAuthorized
+                    ? <NavLink to='/profile'>{props.login}</NavLink>
+                    : <NavLink to='/login'>Login</NavLink>
+                }
             </div>
             <h2> It's a very-very useful website... </h2>
         </div>
