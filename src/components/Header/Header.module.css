@@ -5,9 +5,15 @@
     width: 100%;
 }
 
+.open {
+    cursor: pointer;
+    font-size: 30px;
+    float: left;
+}
+
 h2 {
-    /* float: left; */
     text-align: center;
+    /* clear: left; */
 }
 
 p {
@@ -15,8 +21,16 @@ p {
     text-indent: 30px;
 }
 
-.open {
+.login {
+    float: right;
     cursor: pointer;
-    font-size: 30px;
-    float: left;
+    font-size: 20px;
+}
+
+.login a {
+    text-decoration: none;
+    color: white;
+}
+.login a:hover {
+    color: white;
 }
