@@ -4,7 +4,7 @@ import * as axios from "axios";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import loading from "../../images/loading.gif";
-import { getUsers } from "../../api/api";
+import { follow, unfollow, getUsers } from "../../api/api";
 
 let Users = (props) => {
 
@@ -12,13 +12,12 @@ let Users = (props) => {
         props.switchLoading(true);
 
         getUsers(props.currentPage, props.pageSize)
-            .then((response) => {
+            .then((data) => {
                 // debugger
                 props.switchLoading(false);
-                props.setUsers(response.data.items);
-                props.setTotalUsersCount(response.data.totalCount);
+                props.setUsers(data.items);
+                props.setTotalUsersCount(data.totalCount);
             });
-
 
         // console.log('i was \'ere')
     }, []);
@@ -26,10 +25,11 @@ let Users = (props) => {
     let onPageChange = (pageNum) => {
         props.switchLoading(true);
         props.setCurrentPage(pageNum);
+
         getUsers(pageNum, props.pageSize)
-            .then((response) => {
+            .then((data) => {
                 props.switchLoading(false);
-                props.setUsers(response.data.items);
+                props.setUsers(data.items);
                 // console.log(this.props.currentPage)  // store will return the changed number of page only AFTER this 'onClick' is handled
             });
     };
@@ -55,8 +55,8 @@ let Users = (props) => {
             <div>
                 {pages.map((p) => {
                     return (
-                        <span id={s.pages}
-                            className={ props.currentPage === p && s.selectedPage }
+                        <span id={s.pages} key={p}
+                            className={ props.currentPage === p ? s.selectedPage : null}
                             onClick={(e) => onPageChange(p)} >
                             {" "} {p} {" "}
                         </span>
@@ -83,12 +83,26 @@ let Users = (props) => {
                     </div>
                     {u.isFriend
                         ? <button
-                            onClick={() => {props.unfollow(u.id); }}
+                            onClick={() => {
+                                unfollow(u.id)
+                                    .then(data => {
+                                        if (data.resultCode === 0) {
+                                            props.unfollow(u.id);
+                                        }
+                                    });
+                            }}
                             className={s.btn}>
                             Unfollow
                         </button>
                         : <button
-                            onClick={() => {props.follow(u.id); }}
+                            onClick={() => {
+                                follow(u.id)
+                                    .then(data => {
+                                        if (data.resultCode === 0) {
+                                            props.follow(u.id);
+                                        }
+                                    });
+                            }}
                             className={s.btn}>
                             Follow
                         </button>
