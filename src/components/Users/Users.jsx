@@ -26,8 +26,7 @@ let Users = (props) => {
     let onPageChange = (pageNum) => {
         props.switchLoading(true);
         props.setCurrentPage(pageNum);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${props.pageSize}`)
+        getUsers(pageNum, props.pageSize)
             .then((response) => {
                 props.switchLoading(false);
                 props.setUsers(response.data.items);
