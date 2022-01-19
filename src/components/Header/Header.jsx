@@ -3,17 +3,16 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import s from './Header.module.css';
 import * as axios from 'axios';
+import { authMe } from "../../api/api";
 
 function Header(props) {
 
     useEffect(() => {
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true})
-            .then((response) => {
+        authMe()
+            .then((data) => {
                 debugger
-                if (response.data.resultCode === 0) {
-                    let {userId, email, login} = response.data.data;
+                if (data.resultCode === 0) {
+                    let {userId, email, login} = data.data;
                     props.authUser(userId, email, login);
                 }
             });
