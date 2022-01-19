@@ -20,15 +20,13 @@ function Profile(props) {
 
         if (!userId) { userId = 2 }
         axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
-            )
+            .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then((response) => {
                 // debugger
                 props.setUserProfile(response.data);
                 // console.log(response.data)
             });
-    });
+    }, []);
 
     if (!props.profile) {
         return <img className={s.loading} src={loading} />;
