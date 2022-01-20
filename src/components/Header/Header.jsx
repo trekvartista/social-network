@@ -10,7 +10,7 @@ function Header(props) {
     useEffect(() => {
         authMe()
             .then((data) => {
-                debugger
+                // debugger
                 if (data.resultCode === 0) {
                     let {userId, email, login} = data.data;
                     props.authUser(userId, email, login);
