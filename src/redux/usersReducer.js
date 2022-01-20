@@ -38,7 +38,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isLoading: true,
-    isFollowing: false
+    isFollowing: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -83,7 +83,12 @@ const usersReducer = (state = initialState, action) => {
         case SWITCH_LOADING:
             return {...state, isLoading: action.isLoading}
         case SWITCH_FOLLOWING:
-            return {...state, isFollowing: action.isFollowing}
+            return {
+                ...state,
+                isFollowing: action.isLoading
+                    ? [...state.isFollowing, action.userId]
+                    : state.isFollowing.filter(id => id != action.userId)
+                }
 
         default:
             return state
@@ -97,6 +102,6 @@ export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (pageNum) => ({type: SET_PAGE, pageNum})
 export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_COUNT, usersCount})
 export const switchLoading = (isLoading) => ({type: SWITCH_LOADING, isLoading})
-export const switchFollowing = (isFollowing) => ({type: SWITCH_FOLLOWING, isFollowing})
+export const switchFollowing = (isLoading, userId) => ({type: SWITCH_FOLLOWING, isLoading, userId})
 
 export default usersReducer;

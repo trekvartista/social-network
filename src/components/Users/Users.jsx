@@ -82,29 +82,29 @@ let Users = (props) => {
                         <span>{u.status}</span>
                     </div>
                     {u.followed
-                        ? <button disabled={props.isFollowing}
+                        ? <button disabled={props.isFollowing.some(id => id === u.id)}
                             onClick={() => {
-                                props.switchFollowing(true);
+                                props.switchFollowing(true, u.id);
                                 unfollow(u.id)
                                     .then(data => {
                                         if (data.resultCode === 0) {
                                             props.unfollow(u.id);
                                         }
-                                        props.switchFollowing(false);
+                                        props.switchFollowing(false, u.id);
                                     });
                             }}
                             className={s.btn}>
                             Unfollow
                         </button>
-                        : <button disabled={props.isFollowing}
+                        : <button disabled={props.isFollowing.some(id => id === u.id)}
                             onClick={() => {
-                                props.switchFollowing(true);
+                                props.switchFollowing(true, u.id);
                                 follow(u.id)
                                     .then(data => {
                                         if (data.resultCode === 0) {
                                             props.follow(u.id);
                                         }
-                                        props.switchFollowing(false);
+                                        props.switchFollowing(false, u.id);
                                     });
                             }}
                             className={s.btn}>
