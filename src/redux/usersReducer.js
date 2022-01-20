@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS'
 const SET_PAGE = 'SET_PAGE'
 const SET_USERS_COUNT = 'SET_USERS_COUNT'
 const SWITCH_LOADING = 'SWITCH_LOADING'
+const SWITCH_FOLLOWING = 'SWITCH_FOLLOWING'
 
 let initialState = {
     users: [
@@ -36,7 +37,8 @@ let initialState = {
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
-    isLoading: true
+    isLoading: true,
+    isFollowing: false
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -80,7 +82,9 @@ const usersReducer = (state = initialState, action) => {
 
         case SWITCH_LOADING:
             return {...state, isLoading: action.isLoading}
-        
+        case SWITCH_FOLLOWING:
+            return {...state, isFollowing: action.isFollowing}
+
         default:
             return state
     }
@@ -93,5 +97,6 @@ export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (pageNum) => ({type: SET_PAGE, pageNum})
 export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_COUNT, usersCount})
 export const switchLoading = (isLoading) => ({type: SWITCH_LOADING, isLoading})
+export const switchFollowing = (isFollowing) => ({type: SWITCH_FOLLOWING, isFollowing})
 
 export default usersReducer;

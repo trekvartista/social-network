@@ -13,10 +13,10 @@ let Users = (props) => {
 
         getUsers(props.currentPage, props.pageSize)
             .then((data) => {
-                // debugger
                 props.switchLoading(false);
                 props.setUsers(data.items);
                 props.setTotalUsersCount(data.totalCount);
+                // debugger
             });
 
         // console.log('i was \'ere')
@@ -81,26 +81,30 @@ let Users = (props) => {
                         <br />
                         <span>{u.status}</span>
                     </div>
-                    {u.isFriend
-                        ? <button
+                    {u.followed
+                        ? <button disabled={props.isFollowing}
                             onClick={() => {
+                                props.switchFollowing(true);
                                 unfollow(u.id)
                                     .then(data => {
                                         if (data.resultCode === 0) {
                                             props.unfollow(u.id);
                                         }
+                                        props.switchFollowing(false);
                                     });
                             }}
                             className={s.btn}>
                             Unfollow
                         </button>
-                        : <button
+                        : <button disabled={props.isFollowing}
                             onClick={() => {
+                                props.switchFollowing(true);
                                 follow(u.id)
                                     .then(data => {
                                         if (data.resultCode === 0) {
                                             props.follow(u.id);
                                         }
+                                        props.switchFollowing(false);
                                     });
                             }}
                             className={s.btn}>
