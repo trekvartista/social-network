@@ -33,13 +33,16 @@ export const usersAPI = {
     }
 }
 
-export const getUserProfile = (userId) => {
-    return (
-        axiosInstance
-            .get(`profile/${userId}`)
-            .then(response => response.data)
-    )
+export const profileAPI = {
+    getUserProfile: (userID) => {
+        return (
+            axiosInstance
+                .get(`profile/${userID}`)
+                .then(response => response.data)
+        )
+    }
 }
+
 
 export const authMe = () => {
     return (

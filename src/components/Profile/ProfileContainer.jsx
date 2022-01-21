@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setUserProfile } from '../../redux/profileReducer';
+import { getUserProfileTC } from '../../redux/profileReducer';
 import Profile from './Profile';
 
 let mapStateToProps = (state) => {
@@ -9,4 +9,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { setUserProfile })(Profile);
+export default connect(mapStateToProps, { getUserProfile: getUserProfileTC })(Profile);

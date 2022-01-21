@@ -1,12 +1,9 @@
 import React from "react";
-import axios from "axios";
-import loading from "../../images/loading.gif";
-import ProfileInfo from "./ProfileInfo";
 import s from "./Profile.module.css";
+import loading from "../../images/loading.gif";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
-import { getUserProfile } from "../../api/api";
 
 function Profile(props) {
     // const OnAvaSelected = (e) => {
@@ -17,14 +14,9 @@ function Profile(props) {
     let userId = match.params.userId;
 
     useEffect(() => {
-
-
         if (!userId) { userId = 21912 }
-        getUserProfile(userId)
-            .then((data) => {
-                props.setUserProfile(data);
-                // console.log(response.data)
-            });
+        
+        props.getUserProfile(userId);
     }, [userId]);
 
     if (!props.profile) {
