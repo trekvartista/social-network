@@ -1,21 +1,12 @@
 import React from "react";
+import s from './Header.module.css';
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import s from './Header.module.css';
-import * as axios from 'axios';
-import { authMe } from "../../api/api";
 
 function Header(props) {
 
     useEffect(() => {
-        authMe()
-            .then((data) => {
-                // debugger
-                if (data.resultCode === 0) {
-                    let {userId, email, login} = data.data;
-                    props.authUser(userId, email, login);
-                }
-            });
+        props.authMe();
     }, []);
 
     let openNav = () => {

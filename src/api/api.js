@@ -43,11 +43,12 @@ export const profileAPI = {
     }
 }
 
-
-export const authMe = () => {
-    return (
-        axiosInstance
-            .get(`auth/me`)
-            .then(response => response.data)
-    )
+export const authAPI = {
+    authMe: () => {
+        return (
+            axiosInstance
+                .get(`auth/me`)
+                .then(response => response.data)
+        )
+    }
 }
