@@ -7,33 +7,7 @@ const SWITCH_LOADING = 'SWITCH_LOADING'
 const SWITCH_FOLLOWING = 'SWITCH_FOLLOWING'
 
 let initialState = {
-    users: [
-        // {
-        //     id: 1,
-        //     isFriend: true,
-        //     avatarUrl: 'http://cdn.onlinewebfonts.com/svg/img_264570.png',
-        //     firstName: 'Ricardo',
-        //     lastName: 'Milos',
-        //     status: 'online',
-        //     location: {
-        //         country: 'Memeland',
-        //         city: 'Memass'
-        //     }
-        // },
-        // {
-        //     id: 2,
-        //     isFriend: false,
-        //     avatarUrl: 'http://cdn.onlinewebfonts.com/svg/img_264570.png',
-        //     firstName: 'Sadyr',
-        //     lastName: 'Japarov',
-        //     status: 'online',
-        //     location: {
-        //         country: 'Kyrgyzstan',
-        //         city: 'Bishkek'
-        //     }
-        // },
-        // {}
-    ],
+    users: [],
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
@@ -49,7 +23,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map( u => {
                     if (u.id === action.userId) {
-                        return {...u, isFriend: true}   // no need to copy entire state
+                        return {...u, followed: true}   // no need to copy entire state
                     }
                     return {...u}
                 } )
@@ -63,7 +37,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map( u => {
                     if (u.id === action.userId) {
-                        return {...u, isFriend: false}   // no need to copy entire state
+                        return {...u, followed: false}   // no need to copy entire state
                     }
                     return {...u}
                 } )
