@@ -9,12 +9,14 @@ const axiosInstance = axios.create({
     }
 })
 
-export const getUsers = (currentPage = 1, pageSize = 100) => {
-    return (
-        axiosInstance
-            .get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => response.data)
-    )
+export const usersAPI = {
+    getUsers: (currentPage = 1, pageSize = 100) => {
+        return (
+            axiosInstance
+                .get(`users?page=${currentPage}&count=${pageSize}`)
+                .then(response => response.data)
+        )
+    }
 }
 
 export const getUserProfile = (userId) => {
