@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api"
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -61,7 +63,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isFollowing: action.isLoading
                     ? [...state.isFollowing, action.userId]
-                    : state.isFollowing.filter(id => id != action.userId)
+                    : state.isFollowing.filter(id => id !== action.userId)
                 }
 
         default:
@@ -77,5 +79,19 @@ export const setCurrentPage = (pageNum) => ({type: SET_PAGE, pageNum})
 export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_COUNT, usersCount})
 export const switchLoading = (isLoading) => ({type: SWITCH_LOADING, isLoading})
 export const switchFollowing = (isLoading, userId) => ({type: SWITCH_FOLLOWING, isLoading, userId})
+
+export const getUsersTC = (pageNum, pageSize) => {
+    return (dispatch) => {
+        dispatch(switchLoading(true));
+
+        usersAPI.getUsers(pageNum, pageSize)
+            .then((data) => {
+                dispatch(switchLoading(false));
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+                // debugger
+            });
+    }
+}
 
 export default usersReducer;

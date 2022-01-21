@@ -4,34 +4,20 @@ import * as axios from "axios";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import loading from "../../images/loading.gif";
-import { follow, unfollow, getUsers } from "../../api/api";
+import { follow, unfollow, usersAPI } from "../../api/api";
 
 let Users = (props) => {
 
     useEffect(() => {
-        props.switchLoading(true);
 
-        getUsers(props.currentPage, props.pageSize)
-            .then((data) => {
-                props.switchLoading(false);
-                props.setUsers(data.items);
-                props.setTotalUsersCount(data.totalCount);
-                // debugger
-            });
-
+        props.getUsers(props.currentPage, props.pageSize);
         // console.log('i was \'ere')
     }, []);
 
     let onPageChange = (pageNum) => {
-        props.switchLoading(true);
         props.setCurrentPage(pageNum);
-
-        getUsers(pageNum, props.pageSize)
-            .then((data) => {
-                props.switchLoading(false);
-                props.setUsers(data.items);
-                // console.log(this.props.currentPage)  // store will return the changed number of page only AFTER this 'onClick' is handled
-            });
+        
+        props.getUsers(pageNum, props.pageSize);
     };
 
     let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );

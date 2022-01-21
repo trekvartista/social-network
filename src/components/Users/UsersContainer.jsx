@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, switchLoading, switchFollowing } from '../../redux/usersReducer';
+import { setCurrentPage, follow, unfollow, switchFollowing, getUsersTC } from '../../redux/usersReducer';
 import Users from './Users';
 
 let mapStateToProps = (state) => {
@@ -15,4 +15,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, switchLoading, switchFollowing })(Users);
+export default connect(mapStateToProps, { setCurrentPage, follow, unfollow, switchFollowing, getUsers: getUsersTC })(Users);
