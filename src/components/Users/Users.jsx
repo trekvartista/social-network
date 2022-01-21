@@ -1,10 +1,9 @@
 import React from "react";
 import s from "./Users.module.css";
-import * as axios from "axios";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import loading from "../../images/loading.gif";
-import { follow, unfollow, usersAPI } from "../../api/api";
+import defaultUserPhoto from "../../images/defaultUserPhoto.jpg"
 
 let Users = (props) => {
 
@@ -57,7 +56,7 @@ let Users = (props) => {
                             src={
                                 u.photos.small != null
                                     ? u.photos.small
-                                    : "https://png.pngtree.com/png-vector/20190803/ourlarge/pngtree-avatar-user-basic-abstract-circle-background-flat-color-icon-png-image_1647265.jpg"
+                                    : defaultUserPhoto
                             }
                             alt=""
                         />
@@ -68,31 +67,15 @@ let Users = (props) => {
                         <span>{u.status}</span>
                     </div>
                     {u.followed
-                        ? <button disabled={props.isFollowing.some(id => id === u.id)}
-                            onClick={() => {
-                                props.switchFollowing(true, u.id);
-                                unfollow(u.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.unfollow(u.id);
-                                        }
-                                        props.switchFollowing(false, u.id);
-                                    });
-                            }}
+                        ? <button
+                            disabled={props.isFollowing.some(id => id === u.id)}
+                            onClick={() => {props.unfollow(u.id)}}
                             className={s.btn}>
                             Unfollow
                         </button>
-                        : <button disabled={props.isFollowing.some(id => id === u.id)}
-                            onClick={() => {
-                                props.switchFollowing(true, u.id);
-                                follow(u.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.follow(u.id);
-                                        }
-                                        props.switchFollowing(false, u.id);
-                                    });
-                            }}
+                        : <button
+                            disabled={props.isFollowing.some(id => id === u.id)}
+                            onClick={() => {props.follow(u.id)}}
                             className={s.btn}>
                             Follow
                         </button>

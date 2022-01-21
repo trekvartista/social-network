@@ -16,6 +16,20 @@ export const usersAPI = {
                 .get(`users?page=${currentPage}&count=${pageSize}`)
                 .then(response => response.data)
         )
+    },
+    follow: (userID) => {
+        return (
+            axiosInstance
+                .post(`follow/${userID}`, {})
+                .then(response => response.data)
+        )
+    },
+    unfollow: (userID) => {
+        return (
+            axiosInstance
+                .delete(`follow/${userID}`)
+                .then(response => response.data)
+        )
     }
 }
 
@@ -31,22 +45,6 @@ export const authMe = () => {
     return (
         axiosInstance
             .get(`auth/me`)
-            .then(response => response.data)
-    )
-}
-
-export const follow = (userId) => {
-    return (
-        axiosInstance
-            .post(`follow/${userId}`, {})
-            .then(response => response.data)
-    )
-}
-
-export const unfollow = (userId) => {
-    return (
-        axiosInstance
-            .delete(`follow/${userId}`)
             .then(response => response.data)
     )
 }

@@ -85,11 +85,37 @@ export const getUsersTC = (pageNum, pageSize) => {
         dispatch(switchLoading(true));
 
         usersAPI.getUsers(pageNum, pageSize)
-            .then((data) => {
+            .then(data => {
                 dispatch(switchLoading(false));
                 dispatch(setUsers(data.items));
                 dispatch(setTotalUsersCount(data.totalCount));
                 // debugger
+            });
+    }
+}
+
+export const followTC = (userID) => {
+    return (dispatch) => {
+        dispatch(switchFollowing(true, userID));
+        usersAPI.follow(userID)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(follow(userID));
+                }
+                dispatch(switchFollowing(false, userID));
+            });
+    }
+}
+
+export const unfollowTC = (userID) => {
+    return (dispatch) => {
+        dispatch(switchFollowing(true, userID));
+        usersAPI.unfollow(userID)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollow(userID));
+                }
+                dispatch(switchFollowing(false, userID));
             });
     }
 }
