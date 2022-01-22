@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import { Route } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login'
 
 function App() {
 // debugger
@@ -20,7 +21,8 @@ function App() {
                     <Route path='/profile' render={() => <ProfileContainer/>} />
                     <Route path='/contact' render={() => <Contact />} />
                     <Route path='/users' render={() => <UsersContainer />}/>
-                    <Route exact path='/portfolio' render={() => <Portfolio />} />
+                    <Route path='/portfolio' render={() => <Portfolio />} />
+                    <Route path='/login' render={() => < Login />} />
                 </div>
                 <Footer />
             </div>
