@@ -1,7 +1,7 @@
 import React from 'react';
-import s from './Login.module.css';
+import s from './LoginPage.module.css';
 
-let Login = (props) => {
+let LoginPage = (props) => {
     return (
         <>
             <h1 className={s}> Login Page </h1>
@@ -9,4 +9,4 @@ let Login = (props) => {
     )
 }
 
-export default Login;
+export default LoginPage;
