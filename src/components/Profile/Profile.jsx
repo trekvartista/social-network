@@ -4,6 +4,7 @@ import loading from "../../images/loading.gif";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { useEffect } from "react";
 import { Redirect, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Profile(props) {
     // const OnAvaSelected = (e) => {
@@ -11,19 +12,20 @@ function Profile(props) {
     //         props.savePhoto(e.target.file[0]);
     //     }
 
-    
+    const history = useHistory();
     let match = useRouteMatch("/profile/:userId?");
     let userId = match.params.userId;
     
     useEffect(() => {
+        if (!props.isAuthorized) { history.push('/login') }
         if (!userId) { userId = 21912 }
         
         props.getUserProfile(userId);
-    }, [userId]);
+    }, [userId, history]);
     
-    if (!props.isAuthorized) {
-        return <Redirect to={'/login'} />
-    }
+    // if (!props.isAuthorized) {
+    //     return <Redirect to={'/login'} />
+    // }
     
     if (!props.profile) {
         return <img className={s.loading} src={loading} />;
