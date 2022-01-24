@@ -1,15 +1,20 @@
 import s from "./LoginPage.module.css";
 import { useForm } from "react-hook-form";
 
+let renderCount = 0;
+
 let LoginPage = (props) => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
-    console.log(errors);
+    renderCount++;
+    // console.log(errors);
 
+    const login = watch("login");
+    console.log(login)
     return (
         <div className={s.wrapper}>
             <h1> Login page </h1>
-
+            <h6> Render count: {renderCount} </h6>
             <div className={s.forms}>
                 <div className={s.auth}>
                     <h3> Sign in </h3>
