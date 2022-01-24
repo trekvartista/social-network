@@ -2,9 +2,9 @@ import s from "./LoginPage.module.css";
 import { useForm } from "react-hook-form";
 
 let LoginPage = (props) => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    // console.log(errors);
+    console.log(errors);
 
     return (
         <div className={s.wrapper}>
