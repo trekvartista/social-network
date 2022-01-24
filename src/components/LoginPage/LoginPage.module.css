@@ -30,7 +30,7 @@ input {
     margin: 10px;
 }
 
-button {
+.forms button {
     width: 220px;
     background-color: blueviolet;
 }

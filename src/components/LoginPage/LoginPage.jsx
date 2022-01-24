@@ -7,10 +7,7 @@ let LoginPage = (props) => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
     renderCount++;
-    // console.log(errors);
 
-    const login = watch("login");
-    console.log(login)
     return (
         <div className={s.wrapper}>
             <h1> Login page </h1>
