@@ -1,3 +1,36 @@
-h1 {
+.wrapper {
     text-align: center;
+}
+
+.auth {
+    padding: 70px 0;
+}
+
+input {
+    width: 220px;
+}
+
+.login {
+    margin: 10px;
+}
+
+.pwd {
+    margin: 10px;
+}
+
+.remember input {
+    margin-left: -200px;
+}
+
+.text {
+    margin-left: -100px;
+}
+
+.btn {
+    margin: 10px;
+}
+
+button {
+    width: 220px;
+    background-color: blueviolet;
 }
