@@ -11,7 +11,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/LoginPage/LoginPage'
 
 function App() {
-// debugger
+
     return (
             <div id="wrapper">
                 <HeaderContainer />
