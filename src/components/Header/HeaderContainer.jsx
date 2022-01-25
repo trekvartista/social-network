@@ -1,7 +1,6 @@
-import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { authUserTC } from '../../redux/authReducer';
+import { authUserTC, logoutTC } from '../../redux/authReducer';
 
 let mapStateToProps = (state) => {
     return {
@@ -10,4 +9,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { authMe: authUserTC })(Header);
+export default connect(mapStateToProps, { authMe: authUserTC, logout: logoutTC })(Header);
