@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { setCurrentPage, switchFollowing, getUsersTC, followTC, unfollowTC } from '../../redux/usersReducer';
 import Users from './Users';

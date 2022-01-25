@@ -30,7 +30,7 @@ let LoginPage = (props) => {
                     <h3> Sign in </h3>
                     <form
                         onSubmit={handleSubmit((data) => {
-                            console.log('Form is submitted: ', data, '\nAuthorized: ', props.isAuthorized);
+                            // console.log('Form is submitted: ', data, '\nAuthorized: ', props.isAuthorized);
                             // debugger
                             props.login(data.email, data.password, data.rememberMe);
                         })}
