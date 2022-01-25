@@ -22,23 +22,26 @@ let LoginPage = (props) => {
                     >
                         <div className={s.login}>
                             <input
-                                {...register("login", { required: 'This is required' })}
+                                {...register("login", { required: 'This field is required' })}
                                 placeholder="E-mail"
                                 autoComplete="off"
                                 spellCheck={false}
                             />
                         </div>
+                        {errors.login && errors.login.message}
                         <div className={s.pwd}>
                             <input
                                 type="password"
                                 {...register("password",
                                     {
-                                        required: 'This is required'
+                                        required: 'This field is required',
+                                        validate: value => value.length > 4
                                     }
                                 )}
                                 placeholder="Password"
                             />
                         </div>
+                        {errors.password && <p> This field is required </p>}
                         <div className={s.remember}>
                             <input type="checkbox" />
                             <span className={s.text}>Remember me</span>

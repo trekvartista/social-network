@@ -34,3 +34,12 @@ input {
     width: 220px;
     background-color: blueviolet;
 }
+
+.forms p {
+    color: #bf1650;
+}
+  
+.forms p::before {
+    display: inline;
+    content: "⚠";
+  }
