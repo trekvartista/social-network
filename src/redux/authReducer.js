@@ -12,12 +12,12 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
 
     switch(action.type) {
-        case AUTH_USER: return {...state, ...action.data, isAuthorized: true}
+        case AUTH_USER: return {...state, ...action.payload}
         default: return state
     }
 }
 
-export const authUserAC = (userId, email, login) => ({type: AUTH_USER, data: {userId, email, login}});
+export const authUserAC = (userId, email, login, isAuthorized) => ({type: AUTH_USER, payload: {userId, email, login, isAuthorized}});
 
 export const authUserTC = () => {
     return (dispatch) => {
@@ -26,9 +26,31 @@ export const authUserTC = () => {
                 // debugger
                 if (data.resultCode === 0) {
                     let {userId, email, login} = data.data;
-                    dispatch(authUserAC(userId, email, login));
+                    dispatch(authUserAC(userId, email, login, true));
                 }
             });
+    }
+}
+
+export const loginTC = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email, password, rememberMe)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(authUserTC());
+                }
+            })
+    }
+}
+
+export const logoutTC = () => {
+    return (dispatch) => {
+        authAPI.logout()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(authUserAC(null, null, null, false));
+                }
+            })
     }
 }
 
