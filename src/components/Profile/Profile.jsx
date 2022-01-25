@@ -18,8 +18,8 @@ function Profile(props) {
     
     useEffect(() => {
         if (!props.isAuthorized) { history.push('/login') }
-        if (!userId) { userId = 21912 }
-        
+        if (!userId) { userId = props.myUserID }
+ 
         props.getUserProfile(userId);
     }, [userId, history]);
     
