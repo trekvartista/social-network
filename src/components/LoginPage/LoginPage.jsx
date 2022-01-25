@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 let renderCount = 0;
 
 let LoginPage = (props) => {
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch } = useForm({mode: "onBlur"});
 
     renderCount++;
 
@@ -27,8 +27,8 @@ let LoginPage = (props) => {
                                 autoComplete="off"
                                 spellCheck={false}
                             />
+                            {errors.login && <p> This field is required </p>}
                         </div>
-                        {errors.login && errors.login.message}
                         <div className={s.pwd}>
                             <input
                                 type="password"
@@ -40,8 +40,8 @@ let LoginPage = (props) => {
                                 )}
                                 placeholder="Password"
                             />
+                            {errors.password && <p> This field is required </p>}
                         </div>
-                        {errors.password && <p> This field is required </p>}
                         <div className={s.remember}>
                             <input type="checkbox" />
                             <span className={s.text}>Remember me</span>

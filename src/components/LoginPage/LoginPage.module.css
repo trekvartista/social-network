@@ -37,6 +37,7 @@ input {
 
 .forms p {
     color: #bf1650;
+    margin-left: -90px;
 }
   
 .forms p::before {
