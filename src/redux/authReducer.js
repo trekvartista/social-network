@@ -25,8 +25,9 @@ export const authUserTC = () => {
             .then((data) => {
                 // debugger
                 if (data.resultCode === 0) {
-                    let {userId, email, login} = data.data;
-                    dispatch(authUserAC(userId, email, login, true));
+                    let {id, email, login} = data.data;         // <== THE NAMES MUST BE THE SAME
+                    // console.log(userId, email)
+                    dispatch(authUserAC(id, email, login, true));
                 }
             });
     }
@@ -36,10 +37,13 @@ export const loginTC = (email, password, rememberMe) => {
     return (dispatch) => {
         authAPI.login(email, password, rememberMe)
             .then(data => {
-                // if (data.resultCode === 0) {         // <--- verrry strange things are happening right here
+                if (data.resultCode === 0) {
                     dispatch(authUserTC());
-                    // debugger
-                // }
+                }
+                else {
+                    let msg = data.messages.length > 0 ? data.messages[0] : "Some error";
+                    console.log(msg)
+                }
             })
     }
 }
