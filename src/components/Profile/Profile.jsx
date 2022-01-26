@@ -17,11 +17,18 @@ function Profile(props) {
     let userId = match.params.userId;
     
     useEffect(() => {
-        if (!props.isAuthorized) { history.push('/login') }
-        if (!userId) { userId = props.myUserID }
+        if (!props.isAuthorized) {
+            history.push('/login')
+        }
+        if (!userId) { 
+            userId = props.myUserID
+            // if (!userId) {
+            //     history.push('/login')
+            // }
+        }
  
         props.getUserProfile(userId);
-    }, [userId, history]);
+    }, [userId, history, props.myUserID]);
     
     // if (!props.isAuthorized) {
     //     return <Redirect to={'/login'} />
