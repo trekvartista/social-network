@@ -2,22 +2,17 @@ import s from "./LoginPage.module.css";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { loginTC } from "../../redux/authReducer";
-import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 
 let renderCount = 0;
 
 let LoginPage = (props) => {
 
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
-    // const history = useHistory();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const history = useHistory();
     
-    // useEffect(()=> {
-    //     if (props.isAuthorized) { history.push('/profile') }
-    // })
     renderCount++;
-    if (props.isAuthorized) { return <Redirect to={'/profile'} /> }
+    if (props.isAuthorized) { history.push('/profile') }
 
     // console.log(watch())
 
