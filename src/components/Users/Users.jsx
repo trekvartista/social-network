@@ -4,8 +4,11 @@ import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import loading from "../../images/loading.gif";
 import defaultUserPhoto from "../../images/defaultUserPhoto.jpg"
+import { useHistory } from "react-router-dom";
 
 let Users = (props) => {
+
+    const history = useHistory();
 
     useEffect(() => {
 
@@ -75,7 +78,15 @@ let Users = (props) => {
                         </button>
                         : <button
                             disabled={props.isFollowing.some(id => id === u.id)}
-                            onClick={() => {props.follow(u.id)}}
+                            onClick={() => {
+                                
+                                if (!props.isAuthorized) {
+                                    history.push('/login')
+                                    return
+                                }
+                                props.follow(u.id);
+                            
+                            }}
                             className={s.btn}>
                             Follow
                         </button>
