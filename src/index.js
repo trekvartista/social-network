@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.css';
 import store from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.css';
 
-let rerenderEntireTree = () => {
-    ReactDOM.render(                                // 'bind' привязывает контекст к функции
-        // <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>,
-        
+// let rerenderEntireTree = () => {
+
+    ReactDOM.render(
+
         <BrowserRouter>
             <Provider store={store}>
                 <App />
@@ -18,8 +18,8 @@ let rerenderEntireTree = () => {
 
         document.getElementById('root')
     );
-}
+// }
 
-rerenderEntireTree()
+// rerenderEntireTree()
 
-store.subscribe(rerenderEntireTree)
+// store.subscribe(rerenderEntireTree)
