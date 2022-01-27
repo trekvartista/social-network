@@ -1,9 +1,8 @@
-import React from "react";
 import s from "./Profile.module.css";
 import loading from "../../images/loading.gif";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { useEffect } from "react";
-import { Redirect, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 function Profile(props) {
@@ -14,25 +13,20 @@ function Profile(props) {
 
     const history = useHistory();
     let match = useRouteMatch("/profile/:userId?");
-    let userId = match.params.userId;
     
     useEffect(() => {
         if (!props.isAuthorized) {
             history.push('/login')
         }
+        let userId = match.params.userId;
         if (!userId) { 
             userId = props.myUserID
-            // if (!userId) {
-            //     history.push('/login')
-            // }
         }
- 
-        props.getUserProfile(userId);
-    }, [userId, history, props.myUserID]);
-    
-    // if (!props.isAuthorized) {
-    //     return <Redirect to={'/login'} />
-    // }
+        if (userId) {
+            props.getUserProfile(userId);
+        }
+
+    }, [history, match.params.userId, props.myUserID]);
     
     if (!props.profile) {
         return <img className={s.loading} src={loading} />;
