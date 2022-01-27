@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Sidebar.module.css";
 
@@ -23,7 +21,7 @@ const Sidebar = (p) => {
             {  
 
                 <ul id="mySidebar" className={s.sidebar}>
-                <a className={s.closebtn} onClick={closeNav}>&times;</a>
+                <a className={s.closebtn} onClick={closeNav} href="#void">&times;</a>
                 <li>
                     <NavLink activeClassName={s.active} to='/' exact={true}>
                         Home
