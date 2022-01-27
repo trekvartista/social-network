@@ -4,10 +4,10 @@ import s from './MyPosts.module.css'
 
 function MyPosts(props)  {
 
-    // console.log(props)
+    // console.log('RENDER!')
 
     let postElements = props.posts.map((p) => (
-        <Post message={p.text} likes={p.likesCount} />
+        <Post key={p.id} message={p.text} likes={p.likesCount} />
     ));
 
     let newPost = React.createRef();
