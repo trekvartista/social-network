@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { getUserProfileTC } from '../../redux/profileReducer';
 import Profile from './Profile';
