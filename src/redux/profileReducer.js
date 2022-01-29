@@ -55,14 +55,13 @@ export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewTextActionCreator = (text) => ({type: UPDATE_NEW_TEXT, text})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
-export const getUserProfileTC = (userID) => {
-    return (dispatch) => {
-        profileAPI.getUserProfile(userID)
-            .then((data) => {
-                dispatch(setUserProfile(data));
-                // console.log(response.data)
-            });
-    }
+export const getUserProfileTC = (userID) => async (dispatch) => {
+        
+    let data = await profileAPI.getUserProfile(userID)
+
+    dispatch(setUserProfile(data));
+
+    // console.log(response.data)
 }
 
 export default profileReducer;
