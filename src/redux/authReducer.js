@@ -19,18 +19,16 @@ const authReducer = (state = initialState, action) => {
 
 export const authUserAC = (userId, email, login, isAuthorized) => ({type: AUTH_USER, payload: {userId, email, login, isAuthorized}});
 
-export const authUserTC = () => {
-    return (dispatch) => {
-        authAPI.authMe()
-            .then((data) => {
-                // debugger
-                if (data.resultCode === 0) {
-                    let {id, email, login} = data.data;         // <== THE NAMES MUST BE THE SAME
-                    // console.log(userId, email)
-                    dispatch(authUserAC(id, email, login, true));
-                }
-            });
-    }
+export const authUserTC = () => async(dispatch) => {
+    
+    let data = await authAPI.authMe()
+
+    // debugger
+    if (data.resultCode === 0) {
+        let {id, email, login} = data.data;         // <== THE NAMES MUST BE THE SAME
+        // console.log(userId, email)
+        dispatch(authUserAC(id, email, login, true));
+    }    
 }
 
 export const loginTC = (email, password, rememberMe) => {
