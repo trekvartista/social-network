@@ -80,44 +80,41 @@ export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_COUNT, users
 export const switchLoading = (isLoading) => ({type: SWITCH_LOADING, isLoading})
 export const switchFollowing = (isLoading, userId) => ({type: SWITCH_FOLLOWING, isLoading, userId})
 
-export const getUsersTC = (pageNum, pageSize) => {
-    return (dispatch) => {
-        dispatch(switchLoading(true));
+export const getUsersTC = (pageNum, pageSize) => async (dispatch) => {
+    
+    dispatch(switchLoading(true));
 
-        usersAPI.getUsers(pageNum, pageSize)
-            .then(data => {
-                dispatch(switchLoading(false));
-                dispatch(setUsers(data.items));
-                dispatch(setTotalUsersCount(data.totalCount));
-                // debugger
-            });
-    }
+    let data = await usersAPI.getUsers(pageNum, pageSize);
+
+    dispatch(switchLoading(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
+    // debugger
 }
 
-export const followTC = (userID) => {
-    return (dispatch) => {
-        dispatch(switchFollowing(true, userID));
-        usersAPI.follow(userID)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(follow(userID));
-                }
-                dispatch(switchFollowing(false, userID));
-            });
+export const followTC = (userID) => async (dispatch) => {
+    
+    dispatch(switchFollowing(true, userID));
+
+    let data = await usersAPI.follow(userID)
+
+    if (data.resultCode === 0) {
+        dispatch(follow(userID));
     }
+    dispatch(switchFollowing(false, userID));
+
 }
 
-export const unfollowTC = (userID) => {
-    return (dispatch) => {
-        dispatch(switchFollowing(true, userID));
-        usersAPI.unfollow(userID)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(unfollow(userID));
-                }
-                dispatch(switchFollowing(false, userID));
-            });
+export const unfollowTC = (userID) => async (dispatch) => {
+    
+    dispatch(switchFollowing(true, userID));
+    
+    let data = await usersAPI.unfollow(userID)
+        
+    if (data.resultCode === 0) {
+        dispatch(unfollow(userID));
     }
+    dispatch(switchFollowing(false, userID));
 }
 
 export default usersReducer;
