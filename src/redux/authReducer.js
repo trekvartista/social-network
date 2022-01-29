@@ -44,14 +44,12 @@ export const loginTC = (email, password, rememberMe) => async (dispatch) => {
     }
 }
 
-export const logoutTC = () => {
-    return (dispatch) => {
-        authAPI.logout()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(authUserAC(null, null, null, false));
-                }
-            })
+export const logoutTC = () => async (dispatch) => {
+    
+    let data = await authAPI.logout()
+
+    if (data.resultCode === 0) {
+        dispatch(authUserAC(null, null, null, false));
     }
 }
 
