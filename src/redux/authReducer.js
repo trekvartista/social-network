@@ -1,6 +1,6 @@
 import { authAPI } from "../api/api";
 
-const AUTH_USER = 'AUTH_USER';
+const AUTH_USER = 'auth/AUTH_USER';
 
 let initialState = {
     userId: null,
