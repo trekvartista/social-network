@@ -31,18 +31,16 @@ export const authUserTC = () => async(dispatch) => {
     }    
 }
 
-export const loginTC = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.login(email, password, rememberMe)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(authUserTC());
-                }
-                else {
-                    let msg = data.messages.length > 0 ? data.messages[0] : "Some error";
-                    console.log(msg)
-                }
-            })
+export const loginTC = (email, password, rememberMe) => async (dispatch) => {
+        
+    let data = await authAPI.login(email, password, rememberMe)
+
+    if (data.resultCode === 0) {
+        dispatch(authUserTC());
+    }
+    else {
+        let msg = data.messages.length > 0 ? data.messages[0] : "Some error";
+        console.log(msg)
     }
 }
 
