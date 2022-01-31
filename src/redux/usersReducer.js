@@ -12,7 +12,7 @@ const SWITCH_FOLLOWING = 'users/SWITCH_FOLLOWING'
 
 let initialState = {
     users: [],
-    pageSize: 100,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     firstLoadedPage: 1,
