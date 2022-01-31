@@ -18,8 +18,8 @@ let Users = (props) => {
 
     let onPageChange = (pageNum) => {
         props.setCurrentPage(pageNum);
-        props.setFirstPage((pageNum - 5 <= 1) ? 1 : pageNum - 5);
-        props.setLastPage((pageNum + 5  <= pagesCount) ? pageNum + 5 : pagesCount);
+        props.setFirstPage((pageNum - 3 <= 1) ? 1 : pageNum - 3);
+        props.setLastPage((pageNum + 3  <= pagesCount) ? pageNum + 3 : pagesCount);
                 
         props.getUsers(pageNum, props.pageSize);
     };
