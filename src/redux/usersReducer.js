@@ -16,7 +16,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     firstLoadedPage: 1,
-    lastLoadedPage: 11,
+    lastLoadedPage: 6,
     isLoading: true,
     isFollowing: []
 }
