@@ -40,6 +40,8 @@ export const profileAPI = {
                 .get(`profile/${userID}`)
                 .then(response => response.data)
         )
+    },
+    savePhoto: (file) => {
     }
 }
 
