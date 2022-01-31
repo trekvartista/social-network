@@ -55,6 +55,7 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewTextActionCreator = (text) => ({type: UPDATE_NEW_TEXT, text})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const saveUserPhoto = (payload) => ({type: SAVE_USER_PHOTO, payload})
 
 export const getUserProfileTC = (userID) => async (dispatch) => {
         
@@ -65,6 +66,8 @@ export const getUserProfileTC = (userID) => async (dispatch) => {
     // console.log(response.data)
 }
 
-export const saveUserPhoto = (payload) => ({type: SAVE_USER_PHOTO, payload})
+export const savePhotoTC = (file) => async (dispatch) => {
+    
+}
 
 export default profileReducer;
