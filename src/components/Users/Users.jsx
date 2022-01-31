@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Users.module.css";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import loading from "../../images/loading.gif";
 import defaultUserPhoto from "../../images/defaultUserPhoto.jpg"
 import { useHistory } from "react-router-dom";
 
 let Users = (props) => {
-
+    
+    const [activeUsers, setActiveUsers] = useState(props.users)
     const history = useHistory();
+    const userRef = useRef();
 
     useEffect(() => {
 
@@ -23,6 +25,16 @@ let Users = (props) => {
                 
         props.getUsers(pageNum, props.pageSize);
     };
+
+    let onSearchClick = () => {
+
+        // debugger
+        const filteredUsers = props.users.filter( u => {
+            u.name.includes(userRef.current.value);
+            // console.log(u.name.includes(userRef.current.value))
+        })
+        setActiveUsers(filteredUsers)
+    }
     
     let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );
     let pages = [];
@@ -41,6 +53,13 @@ let Users = (props) => {
             <div>
                 <h1>Users</h1>
             </div>
+            <div className={s.searchField}>
+                <input type="search" ref={userRef}/>
+            </div>
+            <div className={s.searchButton}>
+                <button onClick={() => onSearchClick()}>Search</button>
+            </div>
+            <div style={{clear: "left"}}/>
 
             <div className={s.firstLastPage}><button onClick={() => {onPageChange(1)}}>{'<'}</button></div>
             <div>
