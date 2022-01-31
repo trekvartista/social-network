@@ -2,7 +2,8 @@ import { profileAPI } from "../api/api";
 
 const ADD_POST = 'profile/ADD_POST';
 const UPDATE_NEW_TEXT = 'profile/UPDATE-NEW-TEXT';
-const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SAVE_USER_PHOTO = 'SAVE_USER_PHOTO';
 
 let initialState = {
     // profileInfo: [
@@ -63,5 +64,7 @@ export const getUserProfileTC = (userID) => async (dispatch) => {
 
     // console.log(response.data)
 }
+
+export const saveUserPhoto = (payload) => ({type: SAVE_USER_PHOTO, payload})
 
 export default profileReducer;
