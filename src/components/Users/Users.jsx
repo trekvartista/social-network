@@ -18,16 +18,18 @@ let Users = (props) => {
 
     let onPageChange = (pageNum) => {
         props.setCurrentPage(pageNum);
-        
+        props.setFirstPage((pageNum - 5 <= 1) ? 1 : pageNum - 5);
+        props.setLastPage((pageNum + 5  <= pagesCount) ? pageNum + 5 : pagesCount);
+                
         props.getUsers(pageNum, props.pageSize);
     };
-
+    
     let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );
-
     let pages = [];
-
-    for (let i = 0; i < pagesCount; ++i) {
-        pages.push(i + 1);
+    
+    for (let i = props.firstPage; i <= props.lastPage; ++i) {
+        pages.push(i);
+        // console.log(firstRenderedPage, props.currentPage, lastRenderedPage)
     }
 
     if (props.isLoading) {
@@ -40,17 +42,21 @@ let Users = (props) => {
                 <h1>Users</h1>
             </div>
 
+            <div className={s.firstLastPage}><button onClick={() => {onPageChange(1)}}>{'<'}</button></div>
             <div>
                 {pages.map((p) => {
                     return (
                         <span id={s.pages} key={p}
-                            className={ props.currentPage === p ? s.selectedPage : null}
-                            onClick={(e) => onPageChange(p)} >
+                        className={ props.currentPage === p ? s.selectedPage : s.page}
+                        onClick={(e) => onPageChange(p)} >
                             {" "} {p} {" "}
                         </span>
                     );
                 })}
             </div>
+            
+            <div className={s.firstLastPage}><button onClick={() => {onPageChange(pagesCount)}}>{'>'}</button></div>
+            
             {props.users.map((u) => (
                 <li key={u.id} className={s.list}>
                     <NavLink to={"/profile/" + u.id}>

@@ -4,6 +4,8 @@ const FOLLOW = '/users/FOLLOW'
 const UNFOLLOW = 'users/UNFOLLOW'
 const SET_USERS = 'users/SET_USERS'
 const SET_PAGE = 'users/SET_PAGE'
+const SET_FIRST_PAGE = 'users/SET_FIRST_PAGE'
+const SET_LAST_PAGE = 'users/SET_LAST_PAGE'
 const SET_USERS_COUNT = 'users/SET_USERS_COUNT'
 const SWITCH_LOADING = 'users/SWITCH_LOADING'
 const SWITCH_FOLLOWING = 'users/SWITCH_FOLLOWING'
@@ -13,6 +15,8 @@ let initialState = {
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
+    firstLoadedPage: 1,
+    lastLoadedPage: 11,
     isLoading: true,
     isFollowing: []
 }
@@ -53,6 +57,12 @@ const usersReducer = (state = initialState, action) => {
         case SET_PAGE:
             return {...state, currentPage: action.pageNum}
 
+        case SET_FIRST_PAGE:
+            return {...state, firstLoadedPage: action.payload}
+        
+        case SET_LAST_PAGE:
+            return {...state, lastLoadedPage: action.payload}
+
         case SET_USERS_COUNT:
             return {...state, totalUsersCount: action.usersCount}
 
@@ -76,6 +86,8 @@ export const follow = (userId) => ({type: FOLLOW, userId})
 export const unfollow = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (pageNum) => ({type: SET_PAGE, pageNum})
+export const setFirstPage = (payload) => ({type: SET_FIRST_PAGE, payload})
+export const setLastPage = (payload) => ({type: SET_LAST_PAGE, payload})
 export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_COUNT, usersCount})
 export const switchLoading = (isLoading) => ({type: SWITCH_LOADING, isLoading})
 export const switchFollowing = (isLoading, userId) => ({type: SWITCH_FOLLOWING, isLoading, userId})
