@@ -69,6 +69,12 @@
     text-indent: 0em;
 }
 
+.uploadPhoto {
+    position: absolute;
+    bottom: 10px;
+    width: auto;
+}
+
 .posts {
     position: absolute;
     left: 250px;

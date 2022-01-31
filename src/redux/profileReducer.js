@@ -6,14 +6,6 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SAVE_USER_PHOTO = 'SAVE_USER_PHOTO';
 
 let initialState = {
-    // profileInfo: [
-    //     {
-    //         name: "Alex Treasure",
-    //         city: "Bishkek",
-    //         dateOfBirth: "1 April",
-    //         education:  "don't need no"
-    //     }
-    // ],
     profileInfo: null,
     posts: [
         {id: 1, text: "Hi there, retards!", likesCount: 0},
@@ -45,8 +37,11 @@ const profileReducer = (state = initialState, action) => {
             // this._notifySubsriber();
             return {...state, newText: action.text}
         }
+        case SAVE_USER_PHOTO:
+            return {...state, profileImage: action.payload}
+
         case SET_USER_PROFILE:
-            return {...state, profileInfo: action.profile};
+            return {...state, profileInfo: action.profile}
         default:
             return state
     }
@@ -60,14 +55,18 @@ export const saveUserPhoto = (payload) => ({type: SAVE_USER_PHOTO, payload})
 export const getUserProfileTC = (userID) => async (dispatch) => {
         
     let data = await profileAPI.getUserProfile(userID)
-
-    dispatch(setUserProfile(data));
+    dispatch(setUserProfile(data))
 
     // console.log(response.data)
 }
 
 export const savePhotoTC = (file) => async (dispatch) => {
     
+    let data = await profileAPI.savePhoto(file)
+
+    if (data.resultCode === 0) {
+        dispatch(saveUserPhoto(data.data.photos.small))
+    }
 }
 
 export default profileReducer;

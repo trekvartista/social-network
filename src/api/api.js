@@ -42,6 +42,17 @@ export const profileAPI = {
         )
     },
     savePhoto: (file) => {
+        let formData = new FormData();
+        formData.append("image", file);
+        return (
+            axiosInstance
+                .put(`profile/photo`, formData, {
+                    headers: {
+                        "Content-Type": 'multupart/form-data'
+                    }
+                })
+                .then(response => response.data)
+        )
     }
 }
 
