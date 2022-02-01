@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./Portfolio.module.css";
+import frontendBlog from '../../images/frontend_blog.jpg'
 import git from "../../images/github-logo.png";
 import linkedin from "../../images/linkedin-logo.png";
 import vk from "../../images/vk-logo.png";
@@ -12,7 +13,7 @@ const Portfolio = () => {
             <div id={s.center}>
                 <img
                     id={s.img}
-                    src="https://s18798.pcdn.co/dispatch/wp-content/uploads/sites/8960/2020/07/productivity-tools.jpg"
+                    src={frontendBlog}
                     width="600px"
                     height="400px"
                     alt=""
