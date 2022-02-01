@@ -10,7 +10,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
     ReactDOM.render(
 
-        <BrowserRouter>
+        // base name for Browser Router is useful during deployment
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Provider store={store}>
                 <App />
             </Provider>
