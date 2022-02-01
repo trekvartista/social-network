@@ -26,11 +26,11 @@ function App() {
                     <Route path='/profile' render={() => <ProfileContainer/>} />
                     <Route path='/users' render={() => <UsersContainer />}/>
                     <Route path='/contact' render={() => (
-                                            <React.Suspense fallback={loading}>
+                                            <React.Suspense fallback={<div> Loading... </div>}>
                                                 <Contact />
                                             </React.Suspense>)} />
                     <Route path='/portfolio' render={() => (
-                                            <React.Suspense fallback={loading}>
+                                            <React.Suspense fallback={<div> Loading... </div>}>
                                                 <Portfolio />
                                             </React.Suspense>)} />
                 </div>
