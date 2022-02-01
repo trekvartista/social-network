@@ -62,6 +62,14 @@ let Users = (props) => {
             <div style={{clear: "left"}}/>
 
             <div className={s.firstLastPage}><button onClick={() => {onPageChange(1)}}>{'<'}</button></div>
+            <div className={s.firstLastPage}>
+                <button
+                    onClick={() =>
+                        {onPageChange(props.currentPage - (props.lastPage - props.firstPage) > 1
+                            ? props.currentPage - (props.lastPage - props.firstPage)
+                            : 1 )}}
+                > Prev </button>
+            </div>
             <div>
                 {pages.map((p) => {
                     return (
@@ -73,7 +81,7 @@ let Users = (props) => {
                     );
                 })}
             </div>
-            
+            <div className={s.firstLastPage}><button onClick={() => {onPageChange(props.currentPage + (props.lastPage - props.firstPage))}}>Next</button></div>
             <div className={s.firstLastPage}><button onClick={() => {onPageChange(pagesCount)}}>{'>'}</button></div>
             
             {props.users.map((u) => (
