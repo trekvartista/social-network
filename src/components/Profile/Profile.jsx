@@ -31,6 +31,8 @@ function Profile(props) {
 
         }
 
+        window.scrollTo(0, 0)
+
     }, [history, match.params.userId, props.myUserID]);
     
     if (!props.profile) {
