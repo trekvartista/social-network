@@ -11,6 +11,11 @@
     grid-gap: 0px;
 }
 
+.central {
+    position: absolute;
+    left: 250px;
+}
+
 .loading {
     z-index: 1;
     width: 25%;
@@ -19,51 +24,53 @@
     top: 35%;
     left: 35%;
 }
-    
+
 .header {
-    /* grid-area: header; */
     position: absolute;
 
-    left: 250px;
-    width: 1020px;
+    width: 1000px;
     height: 200px;
     background-color: indigo;
 }
 
 #img {
     position: absolute;
+    width: 1000px;
+    height: 200px;
     padding: 20px;
 }
 .ava {
     position: absolute;
-    
-    left: 250px;
-    top: 266px;
+    top: 100px;
+    left: 105px;
     height: 200px;
     width: 200px;
-    background-color: chocolate;
+    background-color: white;
+    z-index: 1;
+    border-radius: 100px;
 }
 
 #ava {
     position: absolute;
-    padding: 25px;
+    padding: 7px;
     width: 200px;
+    border-radius: 100px;
 }
 
 .info {
     /* grid-area: info; */
-    background-color: yellow;
-    width: 820px;
-    height: 200px;
     position: absolute;
-    left: 450px;
-    top: 266px;
-
-    padding: 20px;
+    padding: 120px 0 0 20px;
+    background-color: yellow;
+    width: 800px;
+    height: auto;
+    top: 200px;
+    left: 100px;
 }
 
 .info p {
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
     font-size: 15px;
     line-height: 15px;
     text-indent: 0em;
@@ -71,17 +78,16 @@
 
 .uploadPhoto {
     position: absolute;
-    bottom: 10px;
+    bottom: 30%;
     width: auto;
+    left: 220px;
 }
 
 .posts {
     position: absolute;
-    left: 250px;
-    grid-area: post;
+    left: 100px;
     background-color: rgb(236, 118, 236);
-    width: 1020px;
+    width: 800px;
     height: auto;
-    
-    top: 466px;
+    top: 460px;
 }
