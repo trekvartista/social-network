@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
     ReactDOM.render(
 
         // base name for Browser Router is useful during deployment
-        // upd: actually it isn't useful during deployment or it has to be used with hash router
+        // upd: actually it isn't useful during deployment and it hasn't to be used with hash router
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Provider store={store}>
                 <App />
