@@ -1,23 +1,31 @@
 import { authAPI } from "../api/api";
 
 const AUTH_USER = 'auth/AUTH_USER';
+const HANDLE_ERROR = 'HANDLE_ERROR';
 
 let initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuthorized: false
+    isAuthorized: false,
+    error: null
 }
 
 const authReducer = (state = initialState, action) => {
 
     switch(action.type) {
-        case AUTH_USER: return {...state, ...action.payload}
+        case AUTH_USER: 
+            return {...state, ...action.payload}
+        
+        case HANDLE_ERROR:
+            return {...state, error: action.payload}
+
         default: return state
     }
 }
 
 export const authUserAC = (userId, email, login, isAuthorized) => ({type: AUTH_USER, payload: {userId, email, login, isAuthorized}});
+export const handleError = (payload) => ({type: HANDLE_ERROR, payload})
 
 export const authUserTC = () => async(dispatch) => {
     
@@ -41,6 +49,7 @@ export const loginTC = (email, password, rememberMe) => async (dispatch) => {
     else {
         let msg = data.messages.length > 0 ? data.messages[0] : "Some error";
         console.log(msg)
+        dispatch(handleError(msg));
     }
 }
 
