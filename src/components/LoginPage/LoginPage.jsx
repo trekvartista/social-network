@@ -1,12 +1,12 @@
 import s from "./LoginPage.module.css";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
-import { loginTC } from "../../redux/authReducer";
+import { getCaptchaUrlTC, loginTC } from "../../redux/authReducer";
 import { useHistory } from "react-router-dom";
 
 let renderCount = 0;
 
-let LoginPage = ({ isAuthorized, login, error }) => {
+let LoginPage = ({ isAuthorized, login, error, captchaURL }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
@@ -27,7 +27,7 @@ let LoginPage = ({ isAuthorized, login, error }) => {
                         onSubmit={handleSubmit((data) => {
                             // console.log('Form is submitted: ', data, '\nAuthorized: ', props.isAuthorized);
                             // debugger
-                            login(data.email, data.password, data.rememberMe);
+                            login(data.email, data.password, data.rememberMe, data.captcha);
                         })}
                     >
                         <div className={s.login}>
@@ -55,12 +55,19 @@ let LoginPage = ({ isAuthorized, login, error }) => {
                         </div>
                         <div className={s.remember}>
                             <input type="checkbox" 
-                                {...register(
-                                    "rememberMe"
-                                )}
-                            />
+                                {...register("rememberMe")} />
                             <span className={s.text}>Remember me</span>
                         </div>
+
+                        {captchaURL &&
+                            <div>
+                                <img  src={captchaURL} alt="captcha"/>
+                                <input
+                                    {...register("captcha", { required: true } )}
+                                />
+                            </div>
+                        }
+
                         <div className={s.btn}>
                             <button> Sign In </button>
                         </div>
@@ -74,8 +81,11 @@ let LoginPage = ({ isAuthorized, login, error }) => {
 let mapStateToProps = (state) => {
     return {
         isAuthorized: state.auth.isAuthorized,
-        error: state.auth.error
+        error: state.auth.error,
+        captchaURL: state.auth.captchaURL
     }
 }
 
-export default connect(mapStateToProps, {login: loginTC})(LoginPage);
+export default connect(mapStateToProps,  {
+    login: loginTC
+})(LoginPage);

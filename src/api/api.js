@@ -72,14 +72,20 @@ export const authAPI = {
                 .then(response => response.data)
         )
     },
-    login: (email, password, rememberMe = false) => {
+    login: (email, password, rememberMe = false, captcha = null) => {
         return (
             axiosInstance
-                .post(`auth/login`, { email, password, rememberMe })
+                .post(`auth/login`, { email, password, rememberMe, captcha })
                 .then(response => response.data)
         )
     },
-    logout: () => {
+    logout: async () => {
         return axiosInstance.delete(`auth/login`).then(response => response.data)
+    }
+}
+
+export const securityAPI = {
+    getCaptchaURL: async () => {
+        return axiosInstance.get(`security/get-captcha-url`).then(response => response.data);
     }
 }
