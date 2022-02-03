@@ -30,6 +30,12 @@ input {
     margin: 10px;
 }
 
+.auth {
+    margin: auto;
+    width: 400px;
+    height: auto;
+}
+
 .forms button {
     width: 220px;
     background-color: blueviolet;
@@ -37,10 +43,15 @@ input {
 
 .forms p {
     color: #bf1650;
-    margin-left: -90px;
+    margin-left: -25px;
 }
   
 .forms p::before {
     display: inline;
     content: "⚠";
-  }
+}
+
+.forms p::after {
+    display: inline;
+    content: "⚠";
+}

@@ -6,13 +6,13 @@ import { useHistory } from "react-router-dom";
 
 let renderCount = 0;
 
-let LoginPage = (props) => {
+let LoginPage = ({ isAuthorized, login, error }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
     
     renderCount++;
-    if (props.isAuthorized) { history.push('/profile') }
+    if (isAuthorized) { history.push('/profile') }
 
     // console.log(watch())
 
@@ -27,7 +27,7 @@ let LoginPage = (props) => {
                         onSubmit={handleSubmit((data) => {
                             // console.log('Form is submitted: ', data, '\nAuthorized: ', props.isAuthorized);
                             // debugger
-                            props.login(data.email, data.password, data.rememberMe);
+                            login(data.email, data.password, data.rememberMe);
                         })}
                     >
                         <div className={s.login}>
@@ -51,6 +51,7 @@ let LoginPage = (props) => {
                                 placeholder="Password"
                             />
                             {errors.password && <p> This field is required </p>}
+                            {error && <p>{error}</p>}
                         </div>
                         <div className={s.remember}>
                             <input type="checkbox" 
@@ -72,7 +73,8 @@ let LoginPage = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        isAuthorized: state.auth.isAuthorized
+        isAuthorized: state.auth.isAuthorized,
+        error: state.auth.error
     }
 }
 
