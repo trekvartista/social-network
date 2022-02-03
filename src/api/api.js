@@ -53,6 +53,14 @@ export const profileAPI = {
                 })
                 .then(response => response.data)
         )
+    },
+    saveProfile: (formData) => {
+
+        return (
+            axiosInstance
+                .put(`profile`, formData)
+                .then(response => response.data)
+        )
     }
 }
 

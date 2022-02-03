@@ -12,29 +12,51 @@ import { useForm } from "react-hook-form";
 function Profile({
     profile,
     isAuthorized,
+    userId,
     myUserID,
     getUserProfile,
     savePhoto,
+    saveProfile
 }) {
     const [editMode, setEditMode] = useState(false);
     const history = useHistory();
     let match = useRouteMatch("/profile/:userId?");
-    let userId = match.params.userId;
-
+    let URLuserId = parseInt(match.params.userId);
+    
     useEffect(() => {
+
+        // TODO: figure out all this mess
+        URLuserId = parseInt(match.params.userId);
+        console.log('RENDER!', userId, myUserID)
+        
         if (!isAuthorized) {
             history.push("/login");
         }
-
-        if (!userId) {
-            userId = myUserID;
+        
+        if (!URLuserId && myUserID) {
+            // debugger
+            // history.push("/profile")
+            // console.log('my from that props', myUserID)
+            URLuserId = myUserID;
+            // console.log('something wrong happens here')
+            // userId = myUserID
         }
-        if (userId) {
-            getUserProfile(userId);
+        // console.log(userId ==  myUserID, '!!!', userId, myUserID);
+
+        // IMPORTANT: match.params.userId returns STRING, NOT A NUMBER
+        if (URLuserId === myUserID) {
+            // console.log('WHYYY?!?', userId, myUserID)
+            history.push('/profile')
+        }
+
+        // because there is request to /profile/null and this check prevents to send it
+        if (URLuserId) {
+            // debugger
+            getUserProfile(URLuserId);
         }
 
         window.scrollTo(0, 0);
-    }, [history, match.params.userId, myUserID]);
+    }, [history, URLuserId]);
 
     if (!profile) {
         return <img className={s.loading} src={loading} />;
@@ -48,10 +70,12 @@ function Profile({
                 </div>
 
                 {editMode ? (
-                    <ProfileInfoForm profile={profile} userId={userId} savePhoto={savePhoto}/>
+                    <ProfileInfoForm profile={profile} isOwner={!URLuserId} savePhoto={savePhoto}
+                        saveProfile={(data) => {saveProfile(data)}} 
+                        editModeOff={() => { setEditMode(false); }} />
                 ) : (
                     <ProfileInfo
-                        profile={profile} isOwner={!userId}
+                        profile={profile} isOwner={!URLuserId}
                         editModeOn={() => { setEditMode(true); }} />
                 )}
 
@@ -119,7 +143,7 @@ const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
     );
 };
 
-const ProfileInfoForm = ({ profile, userId, savePhoto }) => {
+const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile }) => {
     const {
         register,
         handleSubmit,
@@ -141,25 +165,29 @@ const ProfileInfoForm = ({ profile, userId, savePhoto }) => {
                     alt=""
                 />
                 <div className={s.uploadPhoto}>
-                    {!userId ? (
+                    {isOwner ? (
                         <input type="file" onChange={uploadPhoto}></input>
                     ) : null}
                 </div>
             </div>
-            <div>
-                <button>Save</button>
-            </div>
             <form
                 onSubmit={handleSubmit((data) => {
                     console.log(data);
+                    saveProfile(data);
+                    editModeOff();
                 })}
             >
+                <div>
+                    <button>Save</button>
+                </div>
+
                 <div className={s.name}>
                     <b> Full name: </b>
                     <input
                         className={s.input}
-                        {...register("name")}
+                        {...register("fullName")}
                         placeholder="Full name"
+                        defaultValue={profile.fullName}
                     />
                 </div>
 
@@ -169,6 +197,7 @@ const ProfileInfoForm = ({ profile, userId, savePhoto }) => {
                         className={s.input}
                         {...register("aboutMe")}
                         placeholder="About me:"
+                        value={profile.aboutMe}
                     />
                 </div>
 
@@ -178,9 +207,22 @@ const ProfileInfoForm = ({ profile, userId, savePhoto }) => {
                         className={s.input}
                         {...register("lookingForAJob")}
                         type="checkbox"
+                        // value={profile.lookingForAJob}
                         style={{ marginLeft: "-100px" }}
                     />
                 </div>
+
+                 {/* {profile.lookingForAJob && ( */}
+
+                     <div className={s.field}>
+                        <b>My professional skills: </b>{" "}
+                        <input className={s.input}
+                            {...register("LookingForAJobDescription")}
+                            placeholder="Description"
+                            value={profile.lookingForAJobDescription}
+                        />
+                    </div>
+                {/* )} */}
 
                 <div className={s.field}>
                     <b>Status:</b>
@@ -188,15 +230,10 @@ const ProfileInfoForm = ({ profile, userId, savePhoto }) => {
                         className={s.input}
                         {...register("status")}
                         placeholder="Status"
+                        value={profile.status}
                     />
                 </div>
             </form>
-            {profile.lookingForAJob && (
-                <div>
-                    <b>My professional skills: </b>{" "}
-                    {profile.lookingForAJobDescription}
-                </div>
-            )}
 
             <div className={s.contacts}>
                 <b>Contacts:</b>{" "}

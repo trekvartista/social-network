@@ -4,6 +4,7 @@ const ADD_POST = 'profile/ADD_POST';
 const UPDATE_NEW_TEXT = 'profile/UPDATE-NEW-TEXT';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SAVE_USER_PHOTO = 'SAVE_USER_PHOTO';
+const SAVE_PROFILE = 'SAVE_PROFILE';
 
 let initialState = {
     profileInfo: null,
@@ -51,13 +52,26 @@ export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewTextActionCreator = (text) => ({type: UPDATE_NEW_TEXT, text})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const saveUserPhoto = (payload) => ({type: SAVE_USER_PHOTO, payload})
+export const saveProfile = (payload) => ({type: SAVE_PROFILE, payload})
 
 export const getUserProfileTC = (userID) => async (dispatch) => {
         
     let data = await profileAPI.getUserProfile(userID)
+    // debugger
     dispatch(setUserProfile(data))
 
     // console.log(response.data)
+}
+
+export const saveProfileTC = (formData) => async (dispatch) => {
+
+    let data = await profileAPI.saveProfile(formData)
+
+    // debugger;
+
+    if (data.resultCode === 0) {
+        dispatch(saveProfile(data))
+    }
 }
 
 export const savePhotoTC = (file) => async (dispatch) => {
