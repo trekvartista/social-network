@@ -82,6 +82,7 @@
 
 .field {
     margin: 10px;
+    max-width: 300px;
 }
 
 .input {
@@ -99,7 +100,7 @@
 .contacts {
     position: absolute;
     bottom: 20px;
-    right: 100px;
+    right: 20px;
 }
 
 .posts {
