@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -8,13 +8,26 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './components/Users/UsersContainer';
 // import Contact from './components/Contact/Contact';
 // import Portfolio from './components/Portfolio/Portfolio';
+// import loading from './images/loading.gif';
 import Footer from './components/Footer/Footer';
-import loading from './images/loading.gif';
 
 const Contact = React.lazy( () => import('./components/Contact/Contact') )
 const Portfolio = React.lazy( () => import('./components/Portfolio/Portfolio') )
 
 function App() {
+
+    const catchUnhandledErrors = (reason, promise) => {
+        alert("Some error occured...")
+        console.error(reason, promise)
+    }
+
+    useEffect( () => {
+        window.addEventListener("unhandledrejection", catchUnhandledErrors)
+        
+        return function cleanup() {
+            window.removeEventListener("unhandledrejection", catchUnhandledErrors)
+        }
+    }, [])
 
     return (
             <div id="wrapper">
