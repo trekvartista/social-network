@@ -3,8 +3,8 @@ import { profileAPI } from "../api/api";
 const ADD_POST = 'profile/ADD_POST';
 const UPDATE_NEW_TEXT = 'profile/UPDATE-NEW-TEXT';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
-const SAVE_USER_PHOTO = 'SAVE_USER_PHOTO';
-const SAVE_PROFILE = 'SAVE_PROFILE';
+const SAVE_USER_PHOTO = 'profile/SAVE_USER_PHOTO';
+const SAVE_PROFILE = 'profile/SAVE_PROFILE';
 
 let initialState = {
     profileInfo: null,
