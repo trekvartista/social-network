@@ -1,8 +1,8 @@
 import { authAPI, securityAPI } from "../api/api";
 
 const AUTH_USER = 'auth/AUTH_USER';
-const HANDLE_ERROR = 'HANDLE_ERROR';
-const GET_CAPTCHA_URL = 'GET_CAPTCHA_URL';
+const HANDLE_ERROR = 'auth/HANDLE_ERROR';
+const GET_CAPTCHA_URL = 'auth/GET_CAPTCHA_URL';
 
 let initialState = {
     userId: null,
