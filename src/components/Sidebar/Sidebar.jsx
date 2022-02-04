@@ -21,7 +21,7 @@ const Sidebar = (p) => {
             {  
 
                 <ul id="mySidebar" className={s.sidebar}>
-                <a className={s.closebtn} onClick={closeNav} href="#void">&times;</a>
+                <a className={s.closebtn} onClick={closeNav}>&times;</a>
                 <li>
                     <NavLink activeClassName={s.active} to='/' exact={true}>
                         Home
