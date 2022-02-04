@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setCurrentPage, setSearchValue, switchFollowing, getUsersTC, followTC, unfollowTC, setFirstPage, setLastPage } from '../../redux/usersReducer';
+import { setCurrentPage, setSearchValue, setFilter, switchFollowing, getUsersTC, followTC, unfollowTC, setFirstPage, setLastPage } from '../../redux/usersReducer';
 import Users from './Users';
 
 let mapStateToProps = (state) => {
@@ -9,6 +9,7 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         searchValue: state.usersPage.searchValue,
+        filterValue: state.usersPage.filterValue,
         firstPage: state.usersPage.firstLoadedPage,
         lastPage: state.usersPage.lastLoadedPage,
         isLoading: state.usersPage.isLoading,
@@ -23,6 +24,7 @@ export default connect(mapStateToProps, {
     setFirstPage,
     setLastPage,
     setSearchValue,
+    setFilter,
     follow: followTC,
     unfollow: unfollowTC,
     switchFollowing,

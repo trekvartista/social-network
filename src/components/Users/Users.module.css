@@ -24,10 +24,16 @@
     margin-top: 15px;
 }
 
+.searchFilter {
+    float: right;
+    margin-top: 17px;
+    margin-right: 5px;
+}
+
 .searchButton {
     float: right;
     margin-top: 15px;
-    margin-right: 15px;
+    margin-right: 5px;
 }
 
 .firstLastPage {

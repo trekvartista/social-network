@@ -11,25 +11,27 @@ let Users = (props) => {
     // const [activeUsers, setActiveUsers] = useState(props.users)
     const history = useHistory();
     const userRef = useRef();
+    const filterRef = useRef();
 
     useEffect(() => {
-        
         props.getUsers(props.currentPage, props.pageSize);
     }, []);
     
     let setPages = (pageNum = 1, pagesCount) => {
         props.setCurrentPage(pageNum);
         props.setFirstPage((pageNum - 3 <= 1) ? 1 : pageNum - 3);
-        props.setLastPage((pageNum + 3  <= pagesCount) ? pageNum + 3 : pagesCount);
+        props.setLastPage((pageNum + 3  <= pagesCount) ? pageNum + 3 : (pagesCount < 1 ? 1 : pagesCount) );
     }
     
     let onPageChange = (pageNum) => {
-        
         setPages(pageNum, pagesCount)
-        
-        const searchValue = userRef.current.value
-        props.getUsers(pageNum, props.pageSize, searchValue);
+        props.getUsers(pageNum, props.pageSize, props.searchValue, props.filterValue);
     };
+
+    let onFilterChange = () => {
+        const filterValue = filterRef.current.value
+        props.setFilter(filterValue)
+    }
 
     let onSearch = () => {
         const searchValue = userRef.current.value
@@ -37,10 +39,11 @@ let Users = (props) => {
     }
 
     let onSearchClick = async () => {
-        const data = await props.getUsers(1, props.pageSize, props.searchValue)
+        const data = await props.getUsers(1, props.pageSize, props.searchValue, props.filterValue)
 
         let pagesCount = Math.ceil(data.totalCount / props.pageSize)
         setPages(1, pagesCount)
+        // debugger
     }
     
     let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );
@@ -59,21 +62,34 @@ let Users = (props) => {
             <div>
                 <h1>Users</h1>
             </div>
+
             <div className={s.searchField}>
-                <input type="search" ref={userRef} value={props.searchValue} onChange={() => {onSearch()}}/>
+                <input type="search" ref={userRef} value={props.searchValue} onChange={() => { onSearch() }}/>
             </div>
+
+            <div className={s.searchFilter}>
+                <select ref={filterRef} value={props.filterValue} onChange={() => { onFilterChange() }}> 
+                    <option> All </option>
+                    <option> Followed </option>
+                    <option> Not followed </option>
+                </select>
+            </div>
+
             <div className={s.searchButton}>
                 <button onClick={() => onSearchClick()}>Search</button>
             </div>
+
+
             <div style={{clear: "left"}}/>
 
-            <div className={s.firstLastPage}><button onClick={() => {onPageChange(1)}}>{'<'}</button></div>
+
+            <div className={s.firstLastPage}><button onClick={() => { onPageChange(1) }}>{'<'}</button></div>
             <div className={s.firstLastPage}>
                 <button
                     onClick={() =>
                         {onPageChange(props.currentPage - (props.lastPage - props.firstPage) > 1
                             ? props.currentPage - (props.lastPage - props.firstPage)
-                            : 1 )}}
+                            : 1 ); console.log(props.firstPage, props.currentPage, props.lastPage) }}
                 > Prev </button>
             </div>
             <div>
@@ -96,8 +112,9 @@ let Users = (props) => {
                                 : props.pagesCount )}}
                 > Next </button>
             </div>
-            <div className={s.firstLastPage}><button onClick={() => {onPageChange(pagesCount)}}>{'>'}</button></div>
+            <div className={s.firstLastPage}><button onClick={() => {onPageChange( pagesCount < 1 ? 1 : pagesCount )}}>{'>'}</button></div>
             
+
             {props.users.map((u) => (
                 <li key={u.id} className={s.list}>
                     <NavLink to={"/profile/" + u.id}>
@@ -140,6 +157,8 @@ let Users = (props) => {
                     }
                 </li>
             ))}
+
+
             <div style={{height: 25}}></div>
         </ul>
     );

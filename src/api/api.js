@@ -10,10 +10,25 @@ const axiosInstance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers: (currentPage = 1, pageSize = 100, term = '') => {
+    getUsers: (currentPage = 1, pageSize = 100, term = '', filter = 'All') => {
+
+        let pageNum = currentPage
+        if (currentPage <= 0) {
+            pageNum = 1
+        }
+        let friend
+        if (filter === 'All') {
+            return axiosInstance
+                    .get(`users?page=${pageNum}&count=${pageSize}&term=${term}`).then(response => response.data)
+        } else if (filter === 'Followed') {
+            friend = true
+        } else {
+            friend = false
+        }
+
         return (
             axiosInstance
-                .get(`users?page=${currentPage}&count=${pageSize}&term=${term}`)
+                .get(`users?page=${currentPage}&count=${pageSize}&term=${term}&friend=${friend}`)
                 .then(response => response.data)
         )
     },
