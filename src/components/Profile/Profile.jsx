@@ -49,7 +49,7 @@ function Profile({
             history.push('/profile')
         }
 
-        // because there is request to /profile/null and this check prevents to send it
+        // because there is request to /profile/NaN (or /profile/null) and this check prevents to send it
         if (URLuserId) {
             // debugger
             getUserProfile(URLuserId);
