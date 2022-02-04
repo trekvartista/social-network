@@ -4,7 +4,7 @@ const FOLLOW = '/users/FOLLOW'
 const UNFOLLOW = 'users/UNFOLLOW'
 const SET_USERS = 'users/SET_USERS'
 const SET_PAGE = 'users/SET_PAGE'
-const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE'
+const SET_SEARCH_VALUE = 'users/SET_SEARCH_VALUE'
 const SET_FIRST_PAGE = 'users/SET_FIRST_PAGE'
 const SET_LAST_PAGE = 'users/SET_LAST_PAGE'
 const SET_USERS_COUNT = 'users/SET_USERS_COUNT'
@@ -98,11 +98,11 @@ export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_COUNT, users
 export const switchLoading = (isLoading) => ({type: SWITCH_LOADING, isLoading})
 export const switchFollowing = (isLoading, userId) => ({type: SWITCH_FOLLOWING, isLoading, userId})
 
-export const getUsersTC = (pageNum, pageSize, term) => async (dispatch) => {
+export const getUsersTC = (pageNum, pageSize, term, friends) => async (dispatch) => {
     
     dispatch(switchLoading(true));
 
-    let data = await usersAPI.getUsers(pageNum, pageSize, term);
+    let data = await usersAPI.getUsers(pageNum, pageSize, term, friends);
 
     dispatch(switchLoading(false));
     dispatch(setUsers(data.items));
