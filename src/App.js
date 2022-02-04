@@ -17,7 +17,7 @@ const Portfolio = React.lazy( () => import('./components/Portfolio/Portfolio') )
 function App() {
 
     const catchUnhandledErrors = (reason, promise) => {
-        alert("Some error occured...")
+        alert(reason.reason.message)
         console.error(reason, promise)
     }
 
