@@ -1,6 +1,7 @@
 import React from 'react';
 import Post from '../Post/Post';
-import s from './MyPosts.module.css'
+import s from './MyPosts.module.css';
+import { useRef } from 'react';
 
 function MyPosts(props)  {
 
@@ -10,7 +11,7 @@ function MyPosts(props)  {
         <Post key={p.id} message={p.text} likes={p.likesCount} />
     ));
 
-    let newPost = React.createRef();
+    let newPost = useRef();
 
     let onAddPost = () => {
         props.addPost();
