@@ -8,31 +8,45 @@ import { useHistory } from "react-router-dom";
 
 let Users = (props) => {
     
-    const [activeUsers, setActiveUsers] = useState(props.users)
+    // const [activeUsers, setActiveUsers] = useState(props.users)
     const history = useHistory();
     const userRef = useRef();
 
-    useEffect(async () => {
+    useEffect(() => {
 
-        const users = await props.getUsers(props.currentPage, props.pageSize);
-        setActiveUsers(users)
-        // console.log('i was \'ere')
+        // const setUsers = async () => {
+        //     const users = await props.getUsers(props.currentPage, props.pageSize);
+        //     setActiveUsers(users)
+        // }
+
+        // setUsers()
+        props.getUsers(props.currentPage, props.pageSize);
     }, []);
-
-    let onPageChange = (pageNum) => {
+    
+    let setPages = (pageNum = 1, pagesCount) => {
         props.setCurrentPage(pageNum);
         props.setFirstPage((pageNum - 3 <= 1) ? 1 : pageNum - 3);
         props.setLastPage((pageNum + 3  <= pagesCount) ? pageNum + 3 : pagesCount);
-                
-        props.getUsers(pageNum, props.pageSize);
+    }
+    
+    let onPageChange = (pageNum) => {
+        
+        setPages(pageNum, pagesCount)
+        
+        const searchValue = userRef.current.value
+        props.getUsers(pageNum, props.pageSize, searchValue);
     };
 
-    let onSearchClick = () => {
+    let onSearch = () => {
+        const searchValue = userRef.current.value
+        props.setSearchValue(searchValue)
+    }
 
-        const filteredUsers = activeUsers.filter( u => 
-            u.name.toLowerCase().includes(userRef.current.value.toLowerCase())
-        )
-        setActiveUsers(filteredUsers)
+    let onSearchClick = async () => {
+        const data = await props.getUsers(1, props.pageSize, props.searchValue)
+
+        let pagesCount = Math.ceil(data.totalCount / props.pageSize)
+        setPages(1, pagesCount)
     }
     
     let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );
@@ -40,9 +54,8 @@ let Users = (props) => {
     
     for (let i = props.firstPage; i <= props.lastPage; ++i) {
         pages.push(i);
-        // console.log(firstRenderedPage, props.currentPage, lastRenderedPage)
     }
-
+    
     if (props.isLoading) {
         return <img className={s.loading} src={loading} />;
     }
@@ -53,7 +66,7 @@ let Users = (props) => {
                 <h1>Users</h1>
             </div>
             <div className={s.searchField}>
-                <input type="search" ref={userRef}/>
+                <input type="search" ref={userRef} value={props.searchValue} onChange={() => {onSearch()}}/>
             </div>
             <div className={s.searchButton}>
                 <button onClick={() => onSearchClick()}>Search</button>
@@ -91,7 +104,7 @@ let Users = (props) => {
             </div>
             <div className={s.firstLastPage}><button onClick={() => {onPageChange(pagesCount)}}>{'>'}</button></div>
             
-            {activeUsers.map((u) => (
+            {props.users.map((u) => (
                 <li key={u.id} className={s.list}>
                     <NavLink to={"/profile/" + u.id}>
                         <img

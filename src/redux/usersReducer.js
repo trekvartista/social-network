@@ -4,6 +4,7 @@ const FOLLOW = '/users/FOLLOW'
 const UNFOLLOW = 'users/UNFOLLOW'
 const SET_USERS = 'users/SET_USERS'
 const SET_PAGE = 'users/SET_PAGE'
+const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE'
 const SET_FIRST_PAGE = 'users/SET_FIRST_PAGE'
 const SET_LAST_PAGE = 'users/SET_LAST_PAGE'
 const SET_USERS_COUNT = 'users/SET_USERS_COUNT'
@@ -15,6 +16,7 @@ let initialState = {
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
+    searchValue: '',
     firstLoadedPage: 1,
     lastLoadedPage: 7,
     isLoading: true,
@@ -57,6 +59,9 @@ const usersReducer = (state = initialState, action) => {
         case SET_PAGE:
             return {...state, currentPage: action.pageNum}
 
+        case SET_SEARCH_VALUE:
+            return {...state, searchValue: action.payload}
+
         case SET_FIRST_PAGE:
             return {...state, firstLoadedPage: action.payload}
         
@@ -86,24 +91,26 @@ export const follow = (userId) => ({type: FOLLOW, userId})
 export const unfollow = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (pageNum) => ({type: SET_PAGE, pageNum})
+export const setSearchValue = (payload) => ({type: SET_SEARCH_VALUE, payload})
 export const setFirstPage = (payload) => ({type: SET_FIRST_PAGE, payload})
 export const setLastPage = (payload) => ({type: SET_LAST_PAGE, payload})
 export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_COUNT, usersCount})
 export const switchLoading = (isLoading) => ({type: SWITCH_LOADING, isLoading})
 export const switchFollowing = (isLoading, userId) => ({type: SWITCH_FOLLOWING, isLoading, userId})
 
-export const getUsersTC = (pageNum, pageSize) => async (dispatch) => {
+export const getUsersTC = (pageNum, pageSize, term) => async (dispatch) => {
     
     dispatch(switchLoading(true));
 
-    let data = await usersAPI.getUsers(pageNum, pageSize);
+    let data = await usersAPI.getUsers(pageNum, pageSize, term);
 
     dispatch(switchLoading(false));
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
+    // dispatch(setTerm(term));
     // debugger
 
-    return data.items
+    return data
 }
 
 export const followTC = (userID) => async (dispatch) => {
