@@ -102,6 +102,8 @@ export const getUsersTC = (pageNum, pageSize) => async (dispatch) => {
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
     // debugger
+
+    return data.items
 }
 
 export const followTC = (userID) => async (dispatch) => {

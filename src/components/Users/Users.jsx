@@ -12,9 +12,10 @@ let Users = (props) => {
     const history = useHistory();
     const userRef = useRef();
 
-    useEffect(() => {
+    useEffect(async () => {
 
-        props.getUsers(props.currentPage, props.pageSize);
+        const users = await props.getUsers(props.currentPage, props.pageSize);
+        setActiveUsers(users)
         // console.log('i was \'ere')
     }, []);
 
@@ -28,11 +29,9 @@ let Users = (props) => {
 
     let onSearchClick = () => {
 
-        // debugger
-        const filteredUsers = props.users.filter( u => {
-            u.name.includes(userRef.current.value);
-            // console.log(u.name.includes(userRef.current.value))
-        })
+        const filteredUsers = activeUsers.filter( u => 
+            u.name.toLowerCase().includes(userRef.current.value.toLowerCase())
+        )
         setActiveUsers(filteredUsers)
     }
     
@@ -92,7 +91,7 @@ let Users = (props) => {
             </div>
             <div className={s.firstLastPage}><button onClick={() => {onPageChange(pagesCount)}}>{'>'}</button></div>
             
-            {props.users.map((u) => (
+            {activeUsers.map((u) => (
                 <li key={u.id} className={s.list}>
                     <NavLink to={"/profile/" + u.id}>
                         <img
