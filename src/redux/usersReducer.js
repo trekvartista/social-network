@@ -107,8 +107,6 @@ export const getUsersTC = (pageNum, pageSize, term) => async (dispatch) => {
     dispatch(switchLoading(false));
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
-    // dispatch(setTerm(term));
-    // debugger
 
     return data
 }

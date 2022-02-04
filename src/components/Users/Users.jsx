@@ -13,13 +13,7 @@ let Users = (props) => {
     const userRef = useRef();
 
     useEffect(() => {
-
-        // const setUsers = async () => {
-        //     const users = await props.getUsers(props.currentPage, props.pageSize);
-        //     setActiveUsers(users)
-        // }
-
-        // setUsers()
+        
         props.getUsers(props.currentPage, props.pageSize);
     }, []);
     
