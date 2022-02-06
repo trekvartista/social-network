@@ -190,6 +190,7 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                         className={s.input}
                         {...register("fullName")}
                         placeholder="Full name"
+                        autoComplete="off"
                         defaultValue={profile.fullName}
                     />
                 </div>
@@ -200,6 +201,7 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                         className={s.input}
                         {...register("aboutMe")}
                         placeholder="About me:"
+                        autoComplete="off"
                         defaultValue={profile.aboutMe}
                     />
                 </div>
@@ -222,7 +224,7 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                         <input className={s.input}
                             {...register("lookingForAJobDescription")}
                             placeholder="Description"
-    
+                            autoComplete="off"
                             defaultValue={profile.lookingForAJobDescription}
                         />
                     </div>
@@ -234,7 +236,7 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                         className={s.input}
                         {...register("status")}
                         placeholder="Status"
-                        
+                        autoComplete="off"
                         defaultValue={profile.status}
                     />
                 </div>
