@@ -22,7 +22,7 @@ function Profile({
     const history = useHistory();
     let match = useRouteMatch("/profile/:userId?");
     let URLuserId = parseInt(match.params.userId);
-    
+
     useEffect(() => {
 
         // TODO: figure out all this mess
@@ -147,8 +147,11 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
     const {
         register,
         handleSubmit,
+        watch,
         formState: { errors },
     } = useForm();
+
+    // console.log(watch())
 
     const uploadPhoto = (e) => {
         if (e.target.files.length) {
@@ -197,7 +200,7 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                         className={s.input}
                         {...register("aboutMe")}
                         placeholder="About me:"
-                        value={profile.aboutMe}
+                        defaultValue={profile.aboutMe}
                     />
                 </div>
 
@@ -207,7 +210,7 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                         className={s.input}
                         {...register("lookingForAJob")}
                         type="checkbox"
-                        // value={profile.lookingForAJob}
+                        // defaultValue={profile.lookingForAJob}
                         style={{ marginLeft: "-100px" }}
                     />
                 </div>
@@ -217,9 +220,10 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                      <div className={s.field}>
                         <b>My professional skills: </b>{" "}
                         <input className={s.input}
-                            {...register("LookingForAJobDescription")}
+                            {...register("lookingForAJobDescription")}
                             placeholder="Description"
-                            value={profile.lookingForAJobDescription}
+    
+                            defaultValue={profile.lookingForAJobDescription}
                         />
                     </div>
                 {/* )} */}
@@ -230,7 +234,8 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                         className={s.input}
                         {...register("status")}
                         placeholder="Status"
-                        value={profile.status}
+                        
+                        defaultValue={profile.status}
                     />
                 </div>
             </form>

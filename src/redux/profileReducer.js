@@ -43,6 +43,7 @@ const profileReducer = (state = initialState, action) => {
 
         case SET_USER_PROFILE:
             return {...state, profileInfo: action.profile}
+
         default:
             return state
     }
@@ -63,14 +64,15 @@ export const getUserProfileTC = (userID) => async (dispatch) => {
     // console.log(response.data)
 }
 
-export const saveProfileTC = (formData) => async (dispatch) => {
+export const saveProfileTC = (formData) => async (dispatch, getState) => {
 
-    let data = await profileAPI.saveProfile(formData)
+    const userId = getState().auth.userId
+    const data = await profileAPI.saveProfile(formData)
 
     // debugger;
 
     if (data.resultCode === 0) {
-        dispatch(saveProfile(data))
+        dispatch(getUserProfileTC(userId))
     }
 }
 
