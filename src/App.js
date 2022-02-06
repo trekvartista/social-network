@@ -36,7 +36,7 @@ function App() {
                 <div>
                     <Route path='/' exact={true} render={() => <HomePage />} />
                     <Route path='/login' render={() => < LoginPage />} />
-                    <Route path='/profile' render={() => <ProfileContainer/>} />
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>} />
                     <Route path='/users' render={() => <UsersContainer />}/>
                     <Route path='/contact' render={() => (
                                             <React.Suspense fallback={<div> Loading... </div>}>
