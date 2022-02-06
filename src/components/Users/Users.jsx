@@ -14,7 +14,11 @@ let Users = (props) => {
     const filterRef = useRef();
 
     useEffect(() => {
-        props.getUsers(props.currentPage, props.pageSize);
+
+    }, [])
+
+    useEffect(() => {
+        props.getUsers(props.currentPage, props.pageSize, props.filter);
     }, []);
     
     let setPages = (pageNum = 1, pagesCount) => {
@@ -25,25 +29,23 @@ let Users = (props) => {
     
     let onPageChange = (pageNum) => {
         setPages(pageNum, pagesCount)
-        props.getUsers(pageNum, props.pageSize, props.searchValue, props.filterValue);
+        props.getUsers(pageNum, props.pageSize, props.filter);
     };
 
     let onFilterChange = () => {
-        const filterValue = filterRef.current.value
-        props.setFilter(filterValue)
-    }
-
-    let onSearch = () => {
         const searchValue = userRef.current.value
-        props.setSearchValue(searchValue)
+        const filterValue = filterRef.current.value
+
+        props.setFilter({ searchValue, filterValue })
+
+        
     }
 
     let onSearchClick = async () => {
-        const data = await props.getUsers(1, props.pageSize, props.searchValue, props.filterValue)
+        const data = await props.getUsers(1, props.pageSize, props.filter)
 
         let pagesCount = Math.ceil(data.totalCount / props.pageSize)
         setPages(1, pagesCount)
-        // debugger
     }
     
     let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );
@@ -64,11 +66,11 @@ let Users = (props) => {
             </div>
 
             <div className={s.searchField}>
-                <input type="search" ref={userRef} value={props.searchValue} onChange={() => { onSearch() }}/>
+                <input type="search" ref={userRef} value={props.filter.searchValue} onChange={() => { onFilterChange() }}/>
             </div>
 
             <div className={s.searchFilter}>
-                <select ref={filterRef} value={props.filterValue} onChange={() => { onFilterChange() }}> 
+                <select ref={filterRef} value={props.filter.filterValue} onChange={() => { onFilterChange() }}> 
                     <option> All </option>
                     <option> Followed </option>
                     <option> Not followed </option>

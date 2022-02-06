@@ -4,7 +4,7 @@ const FOLLOW = 'users/FOLLOW'
 const UNFOLLOW = 'users/UNFOLLOW'
 const SET_USERS = 'users/SET_USERS'
 const SET_PAGE = 'users/SET_PAGE'
-const SET_SEARCH_VALUE = 'users/SET_SEARCH_VALUE'
+// const SET_SEARCH_VALUE = 'users/SET_SEARCH_VALUE'
 const SET_FILTER = 'users/SET_FILTER'
 const SET_FIRST_PAGE = 'users/SET_FIRST_PAGE'
 const SET_LAST_PAGE = 'users/SET_LAST_PAGE'
@@ -17,8 +17,12 @@ let initialState = {
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
-    searchValue: '',
-    filterValue: 'All',
+    filter: {
+        searchValue: '',
+        filterValue: 'All'
+    },
+    // searchValue: '',
+    // filterValue: 'All',
     firstLoadedPage: 1,
     lastLoadedPage: 7,
     isLoading: true,
@@ -61,11 +65,11 @@ const usersReducer = (state = initialState, action) => {
         case SET_PAGE:
             return {...state, currentPage: action.pageNum}
 
-        case SET_SEARCH_VALUE:
-            return {...state, searchValue: action.payload}
+        // case SET_SEARCH_VALUE:
+        //     return {...state, searchValue: action.payload}
             
         case SET_FILTER:
-            return {...state, filterValue: action.payload}
+            return {...state, filter: action.payload}
 
         case SET_FIRST_PAGE:
             return {...state, firstLoadedPage: action.payload}
@@ -96,19 +100,21 @@ export const follow = (userId) => ({type: FOLLOW, userId})
 export const unfollow = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (pageNum) => ({type: SET_PAGE, pageNum})
-export const setSearchValue = (payload) => ({type: SET_SEARCH_VALUE, payload})
 export const setFilter = (payload) => ({type: SET_FILTER, payload})
+// export const setSearchValue = (payload) => ({type: SET_SEARCH_VALUE, payload})
+// export const setFilter = (payload) => ({type: SET_FILTER, payload})
 export const setFirstPage = (payload) => ({type: SET_FIRST_PAGE, payload})
 export const setLastPage = (payload) => ({type: SET_LAST_PAGE, payload})
 export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_COUNT, usersCount})
 export const switchLoading = (isLoading) => ({type: SWITCH_LOADING, isLoading})
 export const switchFollowing = (isLoading, userId) => ({type: SWITCH_FOLLOWING, isLoading, userId})
 
-export const getUsersTC = (pageNum, pageSize, term, filter) => async (dispatch) => {
+export const getUsersTC = (pageNum, pageSize, filter) => async (dispatch) => {
     
     dispatch(switchLoading(true));
 
-    let data = await usersAPI.getUsers(pageNum, pageSize, term, filter);
+    const {searchValue, filterValue} = filter;
+    const data = await usersAPI.getUsers(pageNum, pageSize, searchValue, filterValue);
 
     dispatch(switchLoading(false));
     dispatch(setUsers(data.items));
