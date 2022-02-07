@@ -38,7 +38,9 @@ let Users = (props) => {
 
         props.setFilter({ searchValue, filterValue })
 
-        
+        if (!props.isAuthorized && filterValue !== 'All') {
+            history.push('/login')
+        }
     }
 
     let onSearchClick = async () => {
