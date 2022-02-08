@@ -103,6 +103,12 @@
     right: 20px;
 }
 
+.logo {
+    display: block;
+    width: 25px;
+    height: 25px;
+}
+
 .posts {
     position: absolute;
     left: 100px;

@@ -1,13 +1,20 @@
 import s from "./Profile.module.css";
 import loading from "../../images/loading.gif";
 import header from "../../images/header.jpg";
+import vk from "../../images/vk-logo.png";
+import facebook from "../../images/facebook-logo.png";
+import instagram from "../../images/instagram-logo.png";
+import twitter from "../../images/twitter-logo.png";
+import youtube from "../../images/youtube-logo.png";
+import github from "../../images/github-logo.png";
+
 import defaultUserPhoto from "../../images/defaultUserPhoto.jpg";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 
 function Profile({
     profile,
@@ -88,6 +95,16 @@ function Profile({
 }
 
 const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
+
+    const contacts = {
+        facebook,
+        vk,
+        twitter,
+        instagram,
+        youtube,
+        github
+    }
+
     return (
         <div className={s.info}>
 
@@ -132,9 +149,12 @@ const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
                 {Object.keys(profile.contacts).map((key) => {
                     return (
                         profile.contacts[key] && (
-                            <div>
-                                <b>{key}:</b> {profile.contacts[key]}
-                            </div>
+                            // <div>
+                            //     <b>{key}:</b> {profile.contacts[key]}
+                            // </div>
+                            <a href={profile.contacts[key]} target="_blank">
+                                <img src={contacts[key]} className={s.logo} alt=""/>
+                            </a>
                         )
                     );
                 })}
@@ -145,6 +165,7 @@ const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
 
 const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile }) => {
     const {
+        control,
         register,
         handleSubmit,
         watch,
@@ -178,6 +199,7 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                     console.log(data);
                     saveProfile(data);
                     editModeOff();
+                    debugger
                 })}
             >
                 <div>
@@ -240,20 +262,24 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                         defaultValue={profile.status}
                     />
                 </div>
+
+                <div className={s.contacts} >
+                    <b>Contacts:</b>{" "}
+                    {Object.keys(profile.contacts).map((key, index) => {
+                        return (
+                                <div key={index}>
+                                    <b>{key}:</b> 
+                                    <input className={s.input}
+                                            {...register( `contacts.${key}` )}
+                                            defaultValue={profile.contacts[key]}
+                                            autoComplete="off"
+                                    />
+                                </div>
+                        );
+                    })}
+                </div>
             </form>
 
-            <div className={s.contacts}>
-                <b>Contacts:</b>{" "}
-                {Object.keys(profile.contacts).map((key) => {
-                    return (
-                        profile.contacts[key] && (
-                            <div>
-                                <b>{key}:</b> {profile.contacts[key]}
-                            </div>
-                        )
-                    );
-                })}
-            </div>
         </div>
     );
 };
