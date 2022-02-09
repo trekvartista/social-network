@@ -103,10 +103,15 @@
     right: 20px;
 }
 
-.logo {
+.contacts b {
     display: block;
-    width: 25px;
-    height: 25px;
+}
+
+.logo {
+    display: inline;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
 }
 
 .posts {

@@ -6,6 +6,7 @@ import facebook from "../../images/facebook-logo.png";
 import instagram from "../../images/instagram-logo.png";
 import twitter from "../../images/twitter-logo.png";
 import youtube from "../../images/youtube-logo.png";
+import mainLink from "../../images/linkedin-logo.png";
 import github from "../../images/github-logo.png";
 
 import defaultUserPhoto from "../../images/defaultUserPhoto.jpg";
@@ -102,6 +103,7 @@ const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
         twitter,
         instagram,
         youtube,
+        mainLink,   // linkedin
         github
     }
 
@@ -149,9 +151,6 @@ const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
                 {Object.keys(profile.contacts).map((key) => {
                     return (
                         profile.contacts[key] && (
-                            // <div>
-                            //     <b>{key}:</b> {profile.contacts[key]}
-                            // </div>
                             <a href={profile.contacts[key]} target="_blank">
                                 <img src={contacts[key]} className={s.logo} alt=""/>
                             </a>
@@ -264,7 +263,7 @@ const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile
                 </div>
 
                 <div className={s.contacts} >
-                    <b>Contacts:</b>{" "}
+                    <b>Contacts:</b>
                     {Object.keys(profile.contacts).map((key, index) => {
                         return (
                                 <div key={index}>
