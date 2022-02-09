@@ -29,11 +29,11 @@ const Portfolio = () => {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <img src={git} width="30px" height="30px" alt="" />
+                            <img src={git} className={s.icon} alt="" />
                         </a>
 
-                        <img src={linkedin} width="30px" height="30px" alt="" />
-                        <img src={vk} width="30px" height="30px" alt="" />
+                        <img src={linkedin} className={s.icon} alt="" />
+                        <img src={vk} className={s.icon} alt="" />
                     </div>
                 </div>
                 <div className={s.dots}> </div>
