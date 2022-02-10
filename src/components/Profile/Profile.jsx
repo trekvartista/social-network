@@ -149,9 +149,13 @@ const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
             <div className={s.contacts}>
                 <b>Contacts:</b>{" "}
                 {Object.keys(profile.contacts).map((key) => {
+
+                    const contactURL = profile.contacts[key] &&
+                        profile.contacts[key].includes('https://') ? profile.contacts[key] : 'https://' + profile.contacts[key]
+
                     return (
                         profile.contacts[key] && (
-                            <a href={profile.contacts[key]} target="_blank">
+                            <a href={contactURL} target="_blank">
                                 <img src={contacts[key]} className={s.logo} alt=""/>
                             </a>
                         )
