@@ -1,10 +1,20 @@
+import { type } from "os";
 import { authAPI, securityAPI } from "../api/api";
 
 const AUTH_USER = 'auth/AUTH_USER';
 const HANDLE_ERROR = 'auth/HANDLE_ERROR';
 const GET_CAPTCHA_URL = 'auth/GET_CAPTCHA_URL';
 
-let initialState = {
+export type InitialStateType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuthorized: boolean
+    error: null
+    captchaURL: string | null
+}
+
+let initialState: InitialStateType = {
     userId: null,
     email: null,
     login: null,
@@ -13,7 +23,7 @@ let initialState = {
     captchaURL: null
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any): InitialStateType => {
 
     switch(action.type) {
         case AUTH_USER: 
@@ -29,11 +39,39 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const authUserAC = (userId, email, login, isAuthorized) => ({type: AUTH_USER, payload: {userId, email, login, isAuthorized}})
-export const handleError = (payload) => ({type: HANDLE_ERROR, payload})
-export const getCaptchaURL = (payload) => ({type: GET_CAPTCHA_URL, payload})
+type authUserActionPayloadType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuthorized: boolean | null
+}
 
-export const authUserTC = () => async(dispatch) => {
+type authUserActionType = {
+    type: typeof AUTH_USER
+    payload: authUserActionPayloadType
+}
+
+export const authUserAC = (userId: number | null, email: string| null, login: string | null, isAuthorized: boolean | null ): authUserActionType => ({
+    type: AUTH_USER, payload:
+        {userId, email, login, isAuthorized}
+})
+
+
+type getCaptchaURLActionType = {
+    type: typeof GET_CAPTCHA_URL
+    payload: string
+}
+
+export const getCaptchaURL = (payload: string): getCaptchaURLActionType => ({type: GET_CAPTCHA_URL, payload})
+
+type HandleErrorActionType = {
+    type: typeof HANDLE_ERROR
+    payload: string
+}
+
+export const handleError = (payload: string): HandleErrorActionType => ({type: HANDLE_ERROR, payload})
+
+export const authUserTC = () => async(dispatch: any) => {
     
     let data = await authAPI.authMe()
 
@@ -45,7 +83,7 @@ export const authUserTC = () => async(dispatch) => {
     }    
 }
 
-export const loginTC = (email, password, rememberMe, captcha) => async (dispatch) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: any) => async (dispatch: any) => {
         
     let data = await authAPI.login(email, password, rememberMe, captcha)
 
@@ -65,7 +103,7 @@ export const loginTC = (email, password, rememberMe, captcha) => async (dispatch
     }
 }
 
-export const logoutTC = () => async (dispatch) => {
+export const logoutTC = () => async (dispatch: any) => {
     
     let data = await authAPI.logout();
 
@@ -74,7 +112,7 @@ export const logoutTC = () => async (dispatch) => {
     }
 }
 
-export const getCaptchaUrlTC = () => async (dispatch) => {
+export const getCaptchaUrlTC = () => async (dispatch: any) => {
 
     const data = await securityAPI.getCaptchaURL();
 
