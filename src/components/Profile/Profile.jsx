@@ -15,7 +15,7 @@ import { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 function Profile({
     profile,
@@ -30,12 +30,13 @@ function Profile({
     const history = useHistory();
     let match = useRouteMatch("/profile/:userId?");
     let URLuserId = parseInt(match.params.userId);
-
+    
     useEffect(() => {
-
+        
         // TODO: figure out all this mess
-        URLuserId = parseInt(match.params.userId);
-        console.log('RENDER!', userId, myUserID)
+        // console.log('RENDER!', userId, myUserID)
+
+        // console.log(isOwner)
         
         if (!isAuthorized) {
             history.push("/login");
@@ -64,10 +65,10 @@ function Profile({
         }
 
         window.scrollTo(0, 0);
-    }, [history, URLuserId]);
+    }, [history, isAuthorized, match.params.userId]);
 
     if (!profile) {
-        return <img className={s.loading} src={loading} />;
+        return <img className={s.loading} src={loading} alt="loading..."/>;
     }
 
     return (
@@ -155,7 +156,7 @@ const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
 
                     return (
                         profile.contacts[key] && (
-                            <a href={contactURL} target="_blank">
+                            <a key={key} href={contactURL} target="_blank" rel="noreferrer">
                                 <img src={contacts[key]} className={s.logo} alt=""/>
                             </a>
                         )
@@ -168,11 +169,8 @@ const ProfileInfo = ({ profile, isOwner, editModeOn }) => {
 
 const ProfileInfoForm = ({ profile, isOwner, savePhoto, editModeOff, saveProfile }) => {
     const {
-        control,
         register,
-        handleSubmit,
-        watch,
-        formState: { errors },
+        handleSubmit
     } = useForm();
 
     // console.log(watch())
