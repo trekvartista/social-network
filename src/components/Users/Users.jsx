@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./Users.module.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useRef } from "react";
@@ -12,10 +12,6 @@ let Users = (props) => {
     const history = useHistory();
     const userRef = useRef();
     const filterRef = useRef();
-
-    useEffect(() => {
-
-    }, [])
 
     useEffect(() => {
         props.getUsers(props.currentPage, props.pageSize, props.filter);
@@ -58,7 +54,7 @@ let Users = (props) => {
     }
     
     if (props.isLoading) {
-        return <img className={s.loading} src={loading} />;
+        return <img className={s.loading} src={loading} alt="loading..."/>;
     }
 
     return (
