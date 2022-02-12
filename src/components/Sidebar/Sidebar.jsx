@@ -51,11 +51,11 @@ const Sidebar = (p) => {
                         </li>
                     </ul>
                 </li>
-                <li>
+                {/* <li>
                     <NavLink activeClassName={s.active} to="/contact">
                         Contact
                     </NavLink>
-                </li>
+                </li> */}
                 <li>
                     <NavLink activeClassName={s.active} to="/portfolio">
                         Portfolio
