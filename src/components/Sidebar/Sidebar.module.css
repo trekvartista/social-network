@@ -39,9 +39,16 @@
     cursor: pointer;
     position: absolute;
     top: 5px;
-    right: 10px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
     font-size: 24px;
-    margin-left: 50px;
+    border-style: none;
+}
+
+.closebtn:hover {
+    background-color: #555;
+    color: white;
 }
 
 
