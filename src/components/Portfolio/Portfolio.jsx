@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Portfolio.module.css";
 import frontendBlog from '../../images/frontend_blog.jpg'
-import git from "../../images/github-logo.png";
+import git from "../../images/github-transparent.png";
 import linkedin from "../../images/linkedin-logo.png";
 import vk from "../../images/vk-logo.png";
 
@@ -14,20 +14,16 @@ const Portfolio = () => {
                 <img
                     id={s.img}
                     src={frontendBlog}
-                    width="600px"
-                    height="400px"
                     alt=""
                 />
                 <div id={s.info}>
                     <p>Hello</p>
                     <h1>I'm Iskender</h1>
                     <p id={s.jun}>Junior <u>Frontend Developer</u> </p>
-                    <p id={s.find}> Find me on: </p>
+                    <p style={{fontSize: "20px"}}> Find me on: </p>
                     <div>
-                        <a
+                        <a target="_blank" rel="noreferrer"
                             href="https://github.com/trekvartista"
-                            target="_blank"
-                            rel="noreferrer"
                         >
                             <img src={git} className={s.icon} alt="" />
                         </a>

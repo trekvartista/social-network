@@ -91,23 +91,10 @@
     margin-top: 0px;
 }
 
-
-#info #find {
-    font-size: 20px;
-}
-
-#info div {
-    display: grid;
-    grid-template-columns: 30px 30px 30px;
-    grid-column-gap: 15px;
-}
-
 .icon {
     width: 30px;
     height: 30px;
-}
-
-#info div img:hover {
+    margin: 5px;
     cursor: pointer;
 }
 
@@ -115,4 +102,6 @@
     position: absolute;
     top: 10px;
     left: 5px;
+    width: 600px;
+    height: 400px;
 }
