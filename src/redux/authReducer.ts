@@ -1,4 +1,3 @@
-import { type } from "os";
 import { authAPI, securityAPI } from "../api/api";
 
 const AUTH_USER = 'auth/AUTH_USER';
