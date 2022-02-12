@@ -1,7 +1,7 @@
 import s from "./LoginPage.module.css";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
-import { getCaptchaUrlTC, loginTC } from "../../redux/authReducer";
+import { loginTC } from "../../redux/authReducer";
 import { useHistory } from "react-router-dom";
 
 let renderCount = 0;
