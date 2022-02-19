@@ -24,10 +24,25 @@
     margin-top: 15px;
 }
 
+.searchField input {
+    appearance: none;
+    border: none;
+    outline: none;
+
+    border-radius: 10px;
+}
+
 .searchFilter {
     float: right;
     margin-top: 17px;
     margin-right: 5px;
+}
+
+.searchButton button {
+    appearance: none;
+    outline: none;
+
+    border-radius: 10px;
 }
 
 .searchButton {

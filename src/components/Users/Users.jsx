@@ -64,7 +64,7 @@ let Users = (props) => {
             </div>
 
             <div className={s.searchField}>
-                <input type="search" ref={userRef} value={props.filter.searchValue} onChange={() => { onFilterChange() }}/>
+                <input type="search" ref={userRef} value={props.filter.searchValue} placeholder='Search...' onChange={() => { onFilterChange() }}/>
             </div>
 
             <div className={s.searchFilter}>
@@ -76,7 +76,7 @@ let Users = (props) => {
             </div>
 
             <div className={s.searchButton}>
-                <button onClick={() => onSearchClick()}>Search</button>
+                <button onClick={() => onSearchClick()}>Find</button>
             </div>
 
 
