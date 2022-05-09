@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 
 let Users = (props) => {
     
-    // const [activeUsers, setActiveUsers] = useState(props.users)
     const history = useHistory();
     const userRef = useRef();
     const filterRef = useRef();
